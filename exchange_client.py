@@ -13,7 +13,7 @@ class ExchangeClient:
 
     def request(self, path, body=None):
         data = None if body is None else json.dumps(body).encode()
-        request = Request(self.base + path, data=data, headers={"Content-Type": "application/json"})
+        request = Request(self.base + path, data=data, headers={"Content-Type": "application/json", "User-Agent": "Aurion-Exchange-Client/0.2.0"})
         try:
             with urlopen(request, timeout=self.timeout) as response:
                 value = json.loads(response.read())

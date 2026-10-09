@@ -108,7 +108,7 @@ class EthereumRPC:
     def call(self, method, params=None):
         self.sequence += 1
         payload = {"jsonrpc": "2.0", "id": self.sequence, "method": method, "params": params or []}
-        request = urllib.request.Request(self.url, json.dumps(payload).encode(), headers={"Content-Type": "application/json"})
+        request = urllib.request.Request(self.url, json.dumps(payload).encode(), headers={"Content-Type": "application/json", "User-Agent": "Aurion-Ethereum/0.2.0"})
         try:
             with urllib.request.urlopen(request, timeout=20) as response:
                 raw = response.read(2 * 1024 * 1024 + 1)

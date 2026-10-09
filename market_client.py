@@ -185,7 +185,7 @@ class MarketClient:
         data = None if body is None else json.dumps(body, separators=(",", ":"), allow_nan=False).encode()
         if data is not None and len(data) > MAX_REQUEST_BYTES:
             raise ValueError("request body is too large")
-        headers = {"Accept": "application/json"}
+        headers = {"Accept": "application/json", "User-Agent": "Aurion-Market/0.2.0"}
         if data is not None:
             headers.update({"Content-Type": "application/json", "Origin": self.site,
                             "Sec-Fetch-Site": "same-origin"})

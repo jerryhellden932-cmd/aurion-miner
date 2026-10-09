@@ -21,6 +21,12 @@ exchange listing, or Bitcoin/Ethereum conversion is guaranteed. Read
    Choose **2** to create a plot, starting with 1 MB. Choose **3** to run your
    node and mine. Keep it running; press **Ctrl+C** to stop.
 
+Once the network has mature plots, a new plot must be included and wait three
+checkpoints before it can mine. An existing eligible miner must keep advancing
+the chain during that wait. If the network height is stalled, leave your node
+connected and check network status; starting the software alone does not mean
+that a mining reward has been earned.
+
 If you already have a wallet at https://aurioncoin.io, export its **current**
 `aurion-wallet.json` into the extracted folder and **skip option 1**. Never
 replace that wallet by creating a different one. Use one current signing

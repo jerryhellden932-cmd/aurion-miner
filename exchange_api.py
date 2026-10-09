@@ -85,7 +85,7 @@ class Upstream:
 
     def request(self, path, obj=None, optional=False):
         data = None if obj is None else json.dumps(obj).encode()
-        req = Request(self.base + path, data=data, headers={"Content-Type": "application/json"})
+        req = Request(self.base + path, data=data, headers={"Content-Type": "application/json", "User-Agent": "Aurion-Exchange/0.2.0"})
         try:
             with urlopen(req, timeout=self.timeout) as response:
                 raw = response.read(MAX_RESPONSE + 1)

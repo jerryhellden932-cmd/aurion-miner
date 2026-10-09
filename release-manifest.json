@@ -37,8 +37,8 @@
       "sha256": "f5cf9f2784e2b12d2e9d198ce89fa77141e460874bf63de58ce71b0eb7d06806"
     },
     "README.md": {
-      "bytes": 4578,
-      "sha256": "68533496515b4086c538b214dc15d2ee9ac49dee86c88721e495b24df38f9ae3"
+      "bytes": 4930,
+      "sha256": "1386795a7b15a841e68f3261a1d2caad4ac57717871507e449bc5651ad7c2192"
     },
     "SECURITY.md": {
       "bytes": 3703,
@@ -49,36 +49,36 @@
       "sha256": "ded89e767ad65b9d5be4679a6b71a56c6015ef3180c578133f9ed578358c9a84"
     },
     "aurion-exchange-kit.zip": {
-      "bytes": 73983,
-      "sha256": "0b617212703fd7b63a90264c5e6e3c3068c62e55c963cd25a8f9308b7ec1e782"
+      "bytes": 74235,
+      "sha256": "85f3515d12acb2bc98a009a9a2ce1599421bba34bd2d64ccafe9bf0ed2e4ea59"
     },
     "aurion-linux.zip": {
-      "bytes": 74232,
-      "sha256": "4db76291eaf1a8fb7c6870e40c58916402181d628ab0d4185a7d831b0d121b39"
+      "bytes": 74484,
+      "sha256": "d18b052f0c1a9fd597af187b5981b1ff4556eff545ba495e7adab8f99e3f7991"
     },
     "aurion-macos.zip": {
-      "bytes": 74242,
-      "sha256": "cd9a8c0ca550ad86da5026b5fd1aa29e7997accd9bb880f480412718247db689"
+      "bytes": 74494,
+      "sha256": "244b631692627463da8bfedce420afe00dfd0a2af52e78775365270c7b22bda8"
     },
     "aurion-windows.zip": {
-      "bytes": 74185,
-      "sha256": "6080c51791c8fb7ce8d643f4ab3088838d2347b0c81154370e6673f2c68062db"
+      "bytes": 74437,
+      "sha256": "8768f7c7de74073a43c95a3f2a1dc79dd324626cc8e35769fc5b0b61d74ec1ee"
     },
     "aurion.py": {
-      "bytes": 93253,
-      "sha256": "6c406de8c89eea0554e0ecc687ea5acf66b65bbc6827657f1c6e55ec5cb6e914"
+      "bytes": 93330,
+      "sha256": "3de68c15e04948cf9ef7fbcc144e99c281953c98fb9d3326dae9496b1c52f544"
     },
     "ethereum_swap.py": {
-      "bytes": 11274,
-      "sha256": "76933c63726428cc2b02ef438abe201cd3fc38d16c2ff54c51e42a573e144638"
+      "bytes": 11313,
+      "sha256": "0f54e7f5ae5fdd6ce5a813fc66a3f502a4b07248cd1a6cfcac58fdeb6b847ec8"
     },
     "exchange_api.py": {
-      "bytes": 19870,
-      "sha256": "22854ae94ccb15ce81be497882d880582e7388e20aa939b82541343959f65180"
+      "bytes": 19909,
+      "sha256": "3c750bb500d9b10f707ff4e1de38c1ad12d7e6e07a9e89cc90bda53a6da28bb6"
     },
     "exchange_client.py": {
-      "bytes": 3438,
-      "sha256": "a67249e196bfc8542014c244be4fd679dbba217186e87120e7f74987f260d40d"
+      "bytes": 3484,
+      "sha256": "f023974beca228470919c986baf9fa978eb992eb2471d3e907d91482b23b8b03"
     },
     "genesis-config.json": {
       "bytes": 385,
@@ -93,8 +93,8 @@
       "sha256": "35ed1a8969bc298c0ffa2c84758a2697c079c0d94204fbe3083c79def914b90d"
     },
     "market_client.py": {
-      "bytes": 19614,
-      "sha256": "166c1fdc25a9279e140f3d94d6458b3d9f5a6b583358c2ecee3c3d014a924fa2"
+      "bytes": 19651,
+      "sha256": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128"
     },
     "openapi.json": {
       "bytes": 29602,

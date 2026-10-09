@@ -1233,7 +1233,8 @@ def http_json(base, path, obj=None, timeout=15):
     url = (base if base.startswith("http") else "http://" + base) + path
     data = json.dumps(obj).encode() if obj is not None else None
     req = urllib.request.Request(url, data=data, method="POST" if data else "GET",
-                                 headers={"Content-Type": "application/json"})
+                                 headers={"Content-Type": "application/json",
+                                          "User-Agent": f"Aurion/{VERSION}"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read())
 
