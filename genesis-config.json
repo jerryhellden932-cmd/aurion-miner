@@ -1,0 +1,10 @@
+{
+  "founder_address": "aur285360486e19a68d23e4ff2645eb7856bf5f14c8868164c9d6ee6c7c9f533796",
+  "founder_allocation_bps": 10,
+  "founder_allocation_base_units": "2100000000000",
+  "maximum_supply_base_units": "2100000000000000",
+  "genesis_time": 1791495239,
+  "vesting_checkpoints": 0,
+  "seed_node": "https://node.aurioncoin.io",
+  "release_stage": "unaudited_experimental_mainnet"
+}

@@ -1,0 +1,121 @@
+{
+  "files": {
+    "Aurion.cmd": {
+      "bytes": 133,
+      "sha256": "c50b07b49ca67373da4b3c58bc89be04a588e6467ae64da719fa281aedd10c4c"
+    },
+    "Aurion.command": {
+      "bytes": 196,
+      "sha256": "e638f291c597f04a737a519f2021ba1a96a8610c42597fee798ec3d4bce8db59"
+    },
+    "Aurion.sh": {
+      "bytes": 196,
+      "sha256": "e638f291c597f04a737a519f2021ba1a96a8610c42597fee798ec3d4bce8db59"
+    },
+    "AurionHTLC.abi.json": {
+      "bytes": 5333,
+      "sha256": "3a176da31a7ccb22cc51b2a375affe1e5f002a2440e4d1f0f701d701e2879402"
+    },
+    "AurionHTLC.artifact.json": {
+      "bytes": 17349,
+      "sha256": "25041ce57b4f6b7e24383cbad08471e72f9c2acb50aa5f46e8b99a9851470527"
+    },
+    "AurionHTLC.sol": {
+      "bytes": 3969,
+      "sha256": "5301244714f49bab7e5860a5b68c191d57d0bce295ee4f2f7b4a2e372a3f2f22"
+    },
+    "ETHEREUM.md": {
+      "bytes": 10556,
+      "sha256": "2a5b5b56a98b14214baf64d59f1eebc207f8a43151505edda0f29cbc56395594"
+    },
+    "EXCHANGE.md": {
+      "bytes": 9867,
+      "sha256": "484c58d78ef4f968927cda32f7269376921858e80b249b6c9aa7c220f5bf3e8c"
+    },
+    "MARKET.md": {
+      "bytes": 6911,
+      "sha256": "f5cf9f2784e2b12d2e9d198ce89fa77141e460874bf63de58ce71b0eb7d06806"
+    },
+    "README.md": {
+      "bytes": 4578,
+      "sha256": "68533496515b4086c538b214dc15d2ee9ac49dee86c88721e495b24df38f9ae3"
+    },
+    "SECURITY.md": {
+      "bytes": 3703,
+      "sha256": "1685387ba255dc5d74a3b0f8ed348721ddf70ac54d71e3ac387dd6e3feb272a4"
+    },
+    "TRADE.md": {
+      "bytes": 11369,
+      "sha256": "ded89e767ad65b9d5be4679a6b71a56c6015ef3180c578133f9ed578358c9a84"
+    },
+    "aurion-exchange-kit.zip": {
+      "bytes": 73983,
+      "sha256": "0b617212703fd7b63a90264c5e6e3c3068c62e55c963cd25a8f9308b7ec1e782"
+    },
+    "aurion-linux.zip": {
+      "bytes": 74232,
+      "sha256": "4db76291eaf1a8fb7c6870e40c58916402181d628ab0d4185a7d831b0d121b39"
+    },
+    "aurion-macos.zip": {
+      "bytes": 74242,
+      "sha256": "cd9a8c0ca550ad86da5026b5fd1aa29e7997accd9bb880f480412718247db689"
+    },
+    "aurion-windows.zip": {
+      "bytes": 74185,
+      "sha256": "6080c51791c8fb7ce8d643f4ab3088838d2347b0c81154370e6673f2c68062db"
+    },
+    "aurion.py": {
+      "bytes": 93253,
+      "sha256": "6c406de8c89eea0554e0ecc687ea5acf66b65bbc6827657f1c6e55ec5cb6e914"
+    },
+    "ethereum_swap.py": {
+      "bytes": 11274,
+      "sha256": "76933c63726428cc2b02ef438abe201cd3fc38d16c2ff54c51e42a573e144638"
+    },
+    "exchange_api.py": {
+      "bytes": 19870,
+      "sha256": "22854ae94ccb15ce81be497882d880582e7388e20aa939b82541343959f65180"
+    },
+    "exchange_client.py": {
+      "bytes": 3438,
+      "sha256": "a67249e196bfc8542014c244be4fd679dbba217186e87120e7f74987f260d40d"
+    },
+    "genesis-config.json": {
+      "bytes": 385,
+      "sha256": "75a3350d10e3c72ca0467736ba089b0b09feddca414093ed6faffbcfb2e1217e"
+    },
+    "genesis.json": {
+      "bytes": 809,
+      "sha256": "908b5fa44d7b29fefef3ffcce4d930b912e8b20e71d33b0e2f5a197661bac5b3"
+    },
+    "launcher.py": {
+      "bytes": 2843,
+      "sha256": "35ed1a8969bc298c0ffa2c84758a2697c079c0d94204fbe3083c79def914b90d"
+    },
+    "market_client.py": {
+      "bytes": 19614,
+      "sha256": "166c1fdc25a9279e140f3d94d6458b3d9f5a6b583358c2ecee3c3d014a924fa2"
+    },
+    "openapi.json": {
+      "bytes": 29602,
+      "sha256": "cc7a08ead9eb8b9befd4046f5ba66b76c050c240dd8b43334663598fdadd897a"
+    }
+  },
+  "founder_address": "aur285360486e19a68d23e4ff2645eb7856bf5f14c8868164c9d6ee6c7c9f533796",
+  "founder_allocation_base_units": "2100000000000",
+  "genesis_hash": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+  "manifest_excludes": [
+    "release-manifest.json",
+    "SHA256SUMS.txt"
+  ],
+  "maximum_supply_base_units": "2100000000000000",
+  "network": "aurion-mainnet",
+  "package_type": "python_source",
+  "python_minimum": "3.10",
+  "release_stage": "unaudited_experimental_mainnet",
+  "schema_version": 1,
+  "seed_node": "https://node.aurioncoin.io",
+  "software_version": "0.2.0-experimental",
+  "version": "0.2.0",
+  "zip_timestamp": "1980-01-01T00:00:00"
+}

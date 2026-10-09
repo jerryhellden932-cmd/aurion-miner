@@ -1,0 +1,1074 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Aurion experimental exchange adapter",
+    "version": "0.2.0-experimental",
+    "description": "Unaudited native-asset prototype. No supported real-money deposits, custody, signing or guaranteed finality. Use independent verifying nodes and pin verified network/genesis. Amount/fee strings are converted to native integer body encoding before broadcast."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:17334",
+      "description": "Private local adapter; configure a trusted upstream node separately."
+    }
+  ],
+  "paths": {
+    "/v1/network": {
+      "get": {
+        "operationId": "networkInfo",
+        "summary": "Pinned network identity and exact-unit constants",
+        "responses": {
+          "200": {
+            "description": "Experimental response pinned to canonical node state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Network"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Network/genesis mismatch or canonical tip changed; retry reads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Signed transaction rejected by node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable or inconsistent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/addresses/{address}": {
+      "get": {
+        "operationId": "addressBalance",
+        "summary": "Exact-unit balance and one-time signature state",
+        "responses": {
+          "200": {
+            "description": "Experimental response pinned to canonical node state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Network/genesis mismatch or canonical tip changed; retry reads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Signed transaction rejected by node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable or inconsistent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Address"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/checkpoints": {
+      "get": {
+        "operationId": "canonicalCheckpoints",
+        "summary": "Bounded canonical checkpoints; no deposit execution inference",
+        "responses": {
+          "200": {
+            "description": "Experimental response pinned to canonical node state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckpointPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Network/genesis mismatch or canonical tip changed; retry reads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Signed transaction rejected by node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable or inconsistent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 500
+            }
+          }
+        ]
+      }
+    },
+    "/v1/transactions/{txid}": {
+      "get": {
+        "operationId": "transactionStatus",
+        "summary": "Bounded references and recent canonical execution receipt",
+        "responses": {
+          "200": {
+            "description": "Experimental response pinned to canonical node state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Network/genesis mismatch or canonical tip changed; retry reads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Signed transaction rejected by node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable or inconsistent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "txid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Hash"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 500
+            }
+          }
+        ]
+      }
+    },
+    "/v1/transactions": {
+      "post": {
+        "operationId": "broadcastTransaction",
+        "summary": "Broadcast a pre-signed envelope; requires configured network/genesis pins",
+        "responses": {
+          "202": {
+            "description": "Node acceptance only; not settlement.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BroadcastResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Network/genesis mismatch or canonical tip changed; retry reads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Signed transaction rejected by node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream unavailable or inconsistent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignedTransaction"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "Address": {
+        "type": "string",
+        "pattern": "^aur[0-9a-f]{64}$"
+      },
+      "UnitString": {
+        "type": "string",
+        "pattern": "^(0|[1-9][0-9]*)$",
+        "description": "Exact decimal integer base units. 100000000 base units = 1 AUR; never a float."
+      },
+      "Identity": {
+        "type": "object",
+        "required": [
+          "network",
+          "genesis_hash",
+          "network_fingerprint",
+          "tip_hash",
+          "tip_height",
+          "experimental",
+          "real_money_deposits_enabled"
+        ],
+        "properties": {
+          "network": {
+            "type": "string"
+          },
+          "genesis_hash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "network_fingerprint": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "tip_hash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "tip_height": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "experimental": {
+            "const": true
+          },
+          "real_money_deposits_enabled": {
+            "const": false
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error",
+          "experimental"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "experimental": {
+            "const": true
+          }
+        }
+      },
+      "SignedTransaction": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "body",
+          "sig"
+        ],
+        "properties": {
+          "body": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "net",
+              "type",
+              "from",
+              "to",
+              "amount",
+              "fee",
+              "idx",
+              "parents",
+              "time",
+              "data"
+            ],
+            "properties": {
+              "net": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "transfer",
+                  "register_plot",
+                  "htlc_lock",
+                  "htlc_claim",
+                  "htlc_refund"
+                ]
+              },
+              "from": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "to": {
+                "type": "string",
+                "description": "Recipient Aurion address, or empty string for non-transfer transaction types."
+              },
+              "amount": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "fee": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "idx": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1023
+              },
+              "parents": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 2,
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/components/schemas/Hash"
+                }
+              },
+              "time": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "data": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [],
+                    "properties": {}
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "plot_id",
+                      "owner",
+                      "nonce",
+                      "n",
+                      "pow"
+                    ],
+                    "properties": {
+                      "plot_id": {
+                        "$ref": "#/components/schemas/Hash"
+                      },
+                      "owner": {
+                        "$ref": "#/components/schemas/Address"
+                      },
+                      "nonce": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "n": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "pow": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "hashlock",
+                      "timeout"
+                    ],
+                    "properties": {
+                      "hashlock": {
+                        "$ref": "#/components/schemas/Hash"
+                      },
+                      "timeout": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "contract",
+                      "preimage"
+                    ],
+                    "properties": {
+                      "contract": {
+                        "$ref": "#/components/schemas/Hash"
+                      },
+                      "preimage": {
+                        "$ref": "#/components/schemas/Hash"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "contract"
+                    ],
+                    "properties": {
+                      "contract": {
+                        "$ref": "#/components/schemas/Hash"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "sig": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          }
+        }
+      },
+      "Network": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Identity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "asset": {
+                "const": "AUR"
+              },
+              "decimals": {
+                "const": 8
+              },
+              "base_units_per_aur": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "max_supply_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "minted_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "founder_allocation_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "configured_pins": {
+                "type": "boolean"
+              },
+              "node_version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "finality": {
+                "const": "unproven"
+              }
+            },
+            "required": [
+              "asset",
+              "decimals",
+              "base_units_per_aur",
+              "max_supply_units",
+              "minted_units",
+              "founder_allocation_units",
+              "configured_pins",
+              "node_version",
+              "finality"
+            ]
+          }
+        ]
+      },
+      "Account": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Identity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "address": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "balance_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "locked_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "spendable_units": {
+                "$ref": "#/components/schemas/UnitString"
+              },
+              "last_signature_index": {
+                "type": "integer",
+                "minimum": -1
+              },
+              "signature_capacity": {
+                "const": 1024
+              }
+            },
+            "required": [
+              "address",
+              "balance_units",
+              "locked_units",
+              "spendable_units",
+              "last_signature_index",
+              "signature_capacity"
+            ]
+          }
+        ]
+      },
+      "Checkpoint": {
+        "type": "object",
+        "required": [
+          "hash",
+          "height",
+          "previous_hash",
+          "checkpoint"
+        ],
+        "properties": {
+          "hash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "previous_hash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "checkpoint": {
+            "type": "object",
+            "description": "Original signed checkpoint envelope. DAG tips do not establish transfer execution.",
+            "required": [
+              "body",
+              "sig"
+            ],
+            "properties": {
+              "body": {
+                "type": "object"
+              },
+              "sig": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "CheckpointPage": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Identity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "checkpoints": {
+                "type": "array",
+                "maxItems": 500,
+                "items": {
+                  "$ref": "#/components/schemas/Checkpoint"
+                }
+              },
+              "from": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 500
+              },
+              "next_from": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "execution_receipts_included": {
+                "const": false
+              }
+            },
+            "required": [
+              "checkpoints",
+              "from",
+              "limit",
+              "next_from",
+              "execution_receipts_included"
+            ]
+          }
+        ]
+      },
+      "Inclusion": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "checkpoint_hash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source": {
+            "enum": [
+              "canonical_execution_receipt",
+              "dag_reference"
+            ]
+          }
+        },
+        "required": [
+          "checkpoint_hash",
+          "height",
+          "source"
+        ]
+      },
+      "Scan": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "requested_limit",
+          "references_complete",
+          "dag_nodes_visited",
+          "missing_transactions",
+          "dag_limit_reached",
+          "covers_entire_canonical_chain"
+        ],
+        "properties": {
+          "from": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "to": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "requested_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 500
+          },
+          "references_complete": {
+            "type": "boolean"
+          },
+          "dag_nodes_visited": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "missing_transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hash"
+            }
+          },
+          "dag_limit_reached": {
+            "type": "boolean"
+          },
+          "covers_entire_canonical_chain": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TransactionResult": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Identity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "txid": {
+                "$ref": "#/components/schemas/Hash"
+              },
+              "status": {
+                "enum": [
+                  "applied",
+                  "rejected",
+                  "canonical_reference",
+                  "unknown"
+                ],
+                "description": "Unknown means unverified within explicit scan bounds, never global absence or pending/orphan status."
+              },
+              "known_to_node": {
+                "type": "boolean"
+              },
+              "transaction": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/SignedTransaction"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "inclusion": {
+                "$ref": "#/components/schemas/Inclusion"
+              },
+              "confirmations": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1,
+                "description": "Checkpoint count, not economic finality."
+              },
+              "application_verified": {
+                "type": "boolean"
+              },
+              "applied": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "finality": {
+                "const": "unproven"
+              },
+              "deposit_eligible": {
+                "const": false
+              },
+              "scan": {
+                "$ref": "#/components/schemas/Scan"
+              }
+            },
+            "required": [
+              "txid",
+              "status",
+              "known_to_node",
+              "transaction",
+              "inclusion",
+              "confirmations",
+              "application_verified",
+              "applied",
+              "finality",
+              "deposit_eligible",
+              "scan"
+            ]
+          }
+        ]
+      },
+      "BroadcastResult": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Identity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "txid": {
+                "$ref": "#/components/schemas/Hash"
+              },
+              "broadcast_status": {
+                "enum": [
+                  "ok",
+                  "dup"
+                ]
+              },
+              "application_verified": {
+                "const": false
+              },
+              "deposit_eligible": {
+                "const": false
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "txid",
+              "broadcast_status",
+              "application_verified",
+              "deposit_eligible",
+              "message"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

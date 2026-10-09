@@ -1,0 +1,24 @@
+{
+  "network": "aurion-mainnet",
+  "genesis_hash": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+  "checkpoint": {
+    "body": {
+      "net": "aurion-mainnet",
+      "height": 0,
+      "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+      "time": 1791495239,
+      "challenge": "6d2a1ec78bca4328a3499d55e9d86d8dec3b3b672ae3dd23d589fd1111fc612d",
+      "alloc": [
+        [
+          "aur285360486e19a68d23e4ff2645eb7856bf5f14c8868164c9d6ee6c7c9f533796",
+          2100000000000
+        ]
+      ],
+      "founder_vesting_checkpoints": 0
+    },
+    "sig": ""
+  },
+  "founder_address": "aur285360486e19a68d23e4ff2645eb7856bf5f14c8868164c9d6ee6c7c9f533796",
+  "founder_allocation_base_units": "2100000000000",
+  "release_stage": "unaudited_experimental_mainnet"
+}
