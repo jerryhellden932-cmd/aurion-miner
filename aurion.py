@@ -74,6 +74,7 @@ import getpass
 import hashlib
 import heapq
 import hmac
+import ipaddress
 import json
 import math
 import mmap
@@ -92,7 +93,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
-VERSION = "0.2.0-experimental"
+VERSION = "0.2.1-experimental"
 DEFAULT_MAINNET_NODE = "https://node.aurioncoin.io"
 
 # =============================================================================
@@ -317,6 +318,8 @@ class MerkleKey:
 
 def verify_sig(address, msg, sighex):
     """Returns the signature index if valid for `address`, else None."""
+    if not isinstance(sighex, str) or len(sighex) > 20_000:
+        return None
     try:
         raw = bytes.fromhex(sighex)
     except (ValueError, TypeError):
@@ -411,6 +414,7 @@ class Wallet:
     def __init__(self, path, key, data):
         self.path = os.path.realpath(os.path.abspath(os.fspath(path)))
         self.key, self.data = key, data
+        self._reserved_indices = set()
 
     @property
     def address(self):
@@ -521,6 +525,24 @@ class Wallet:
         with wallet_lock(self.path):
             current = self._read_current()
             idx = max(current["next_index"], self.data["next_index"], chain_last + 1)
+            # This independent high-water mark survives restoration of only the
+            # wallet JSON at this path. Whole-directory rollback/copies remain
+            # unsafe for legacy one-time keys. A failed file write burns a slot.
+            journal = self.path + ".signing.sqlite"
+            fd = os.open(journal, os.O_CREAT | os.O_RDWR, 0o600)
+            os.close(fd)
+            with contextlib.closing(sqlite3.connect(journal)) as db:
+                db.execute("PRAGMA synchronous=FULL")
+                db.execute("CREATE TABLE IF NOT EXISTS signing (address TEXT PRIMARY KEY, next_index INTEGER NOT NULL)")
+                db.execute("BEGIN IMMEDIATE")
+                row = db.execute("SELECT next_index FROM signing WHERE address=?", (self.address,)).fetchone()
+                if row is not None:
+                    if type(row[0]) is not int or not 0 <= row[0] <= self.capacity:
+                        raise ValueError("signing journal is corrupt; do not reset it")
+                    idx = max(idx, row[0])
+                if idx < self.capacity:
+                    db.execute("INSERT OR REPLACE INTO signing VALUES (?,?)", (self.address, idx + 1))
+                db.commit()
             if idx >= self.capacity:
                 self.data = current
                 raise WalletExhausted("this address has used all its signatures; "
@@ -528,6 +550,7 @@ class Wallet:
             current["next_index"] = idx + 1
             self._write_data(current)
             self.data = current
+            self._reserved_indices.add(idx)
         remaining = self.capacity - idx - 1
         if remaining <= 32 and self.capacity >= 256:
             print(f"WARNING: only {remaining} signatures left for {self.address}. "
@@ -535,6 +558,12 @@ class Wallet:
         return idx
 
     def sign(self, msg, idx):
+        with wallet_lock(self.path):
+            self._read_current()
+            if idx not in self._reserved_indices:
+                raise ValueError("reserve a fresh signing index in this process before signing")
+            # Consume before cryptography: exceptions never permit key reuse.
+            self._reserved_indices.remove(idx)
         return self.key.sign(msg, idx)
 
 
@@ -976,18 +1005,30 @@ class Node:
             os.makedirs(datadir, exist_ok=True)
             self.db = sqlite3.connect(os.path.join(datadir, f"{p.name}.db"),
                                       check_same_thread=False, isolation_level=None)
+            self.db.execute("PRAGMA synchronous=FULL")
+            if self.db.execute("PRAGMA quick_check").fetchall() != [("ok",)]:
+                raise RuntimeError("ledger database integrity check failed")
             self.db.execute("CREATE TABLE IF NOT EXISTS txs (id TEXT PRIMARY KEY, j TEXT)")
             self.db.execute("CREATE TABLE IF NOT EXISTS cps (hash TEXT PRIMARY KEY, j TEXT)")
+            self.db.execute("CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+            row = self.db.execute("SELECT value FROM metadata WHERE key='genesis'").fetchone()
+            if row and row[0] != self.genesis_hash:
+                raise RuntimeError("stored genesis differs from configured genesis")
+            self.db.execute("INSERT OR IGNORE INTO metadata VALUES ('genesis', ?)", (self.genesis_hash,))
             self._load()
 
     def _load(self):
         n_tx = n_cp = 0
-        for (j,) in self.db.execute("SELECT j FROM txs ORDER BY rowid"):
-            if self.add_tx(json.loads(j), relaxed=True, persist=False)[0] == "ok":
-                n_tx += 1
-        for (j,) in self.db.execute("SELECT j FROM cps ORDER BY rowid"):
-            if self.add_checkpoint(json.loads(j), relaxed=True, persist=False)[0] == "ok":
-                n_cp += 1
+        for ident, j in self.db.execute("SELECT id, j FROM txs ORDER BY rowid"):
+            obj = json.loads(j)
+            if tx_id(obj) != ident or self.add_tx(obj, relaxed=True, persist=False)[0] != "ok":
+                raise RuntimeError("stored transaction failed validation; recover from a verified backup")
+            n_tx += 1
+        for ident, j in self.db.execute("SELECT hash, j FROM cps ORDER BY rowid"):
+            obj = json.loads(j)
+            if cp_hash(obj) != ident or self.add_checkpoint(obj, relaxed=True, persist=False)[0] != "ok":
+                raise RuntimeError("stored checkpoint failed validation; recover from a verified backup")
+            n_cp += 1
         if n_tx or n_cp:
             self.log(f"loaded {n_tx} transactions, {n_cp} checkpoints; height {self.height()}")
 
@@ -1029,11 +1070,11 @@ class Node:
                         return "invalid", "insufficient spendable balance"
                 if t == "register_plot" and b["fee"] == 0 and leading_zero_bits(tid) < self.p.pow_bits:
                     return "invalid", "registration work too low"
+            if persist and self.db:
+                self.db.execute("INSERT INTO txs VALUES (?,?)", (tid, json.dumps(tx)))
             self.txs[tid] = tx
             self.tips.add(tid)
             self.tips.difference_update(b["parents"])
-            if persist and self.db:
-                self.db.execute("INSERT OR IGNORE INTO txs VALUES (?,?)", (tid, json.dumps(tx)))
             return "ok", tid
 
     def tx_parents(self):
@@ -1071,10 +1112,10 @@ class Node:
                 return "invalid", str(e)
             except (KeyError, TypeError, ValueError) as e:
                 return "invalid", f"malformed: {e}"
+            if persist and self.db:
+                self.db.execute("INSERT INTO cps VALUES (?,?)", (h, json.dumps(cp)))
             self.cps[h], self.states[h] = cp, st
             self.children.setdefault(b["prev"], []).append(h)
-            if persist and self.db:
-                self.db.execute("INSERT OR IGNORE INTO cps VALUES (?,?)", (h, json.dumps(cp)))
             cur = self.best_state()
             if st.weight > cur.weight or (st.weight == cur.weight and h < cur.hash):
                 self._set_best(h)
@@ -1184,6 +1225,8 @@ class Node:
             st = self.best_state()
             return {"network": self.p.name, "version": VERSION, "genesis": self.genesis_hash,
                     "height": st.height, "best": st.hash, "weight": str(st.weight),
+                    "checkpoint_time": st.time,
+                    "real_funds_ready": False,
                     "minted": st.minted, "founder_allocation": FOUNDER_ALLOCATION if self.p.founder else 0,
                     "plots": len(st.plots), "mempool_tips": len(self.tips)}
 
@@ -1229,30 +1272,127 @@ def make_tx(p, wallet, ttype, to, amount, fee, data, parents, last_idx):
 # =============================================================================
 # 7. PEER-TO-PEER NETWORK (HTTP/JSON gossip)
 # =============================================================================
+MAX_PEER_RESPONSE = 16_000_000
+MAX_PEERS = 64
+MAX_SYNC_PAGES = 100
+
+
+def peer_url(peer, discovered=False):
+    """Discovery cannot turn a remote peer into a local-network HTTP proxy.
+
+    Operators may explicitly configure private peers. Automatically learned
+    peers must be public literal IPs (no DNS rebinding) or the pinned seed.
+    """
+    if not isinstance(peer, str) or len(peer) > 255 or any(c.isspace() for c in peer):
+        raise ValueError("invalid peer URL")
+    url = peer if "://" in peer else "http://" + peer
+    parsed = urlparse(url)
+    if (parsed.scheme not in ("http", "https") or not parsed.hostname
+            or parsed.username or parsed.password or parsed.query or parsed.fragment
+            or parsed.path not in ("", "/") or parsed.port == 0):
+        raise ValueError("invalid peer URL")
+    url = url.rstrip("/")
+    if discovered and url != DEFAULT_MAINNET_NODE:
+        try:
+            address = ipaddress.ip_address(parsed.hostname)
+        except ValueError:
+            raise ValueError("discovered peers must use a public IP; configure DNS peers explicitly")
+        if not address.is_global:
+            raise ValueError("discovered peers must use a public IP")
+    return url
+
+
+class _NoPeerRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ValueError("peer redirects are disabled")
+
+
+def read_peer_json(response, limit=MAX_PEER_RESPONSE):
+    raw = response.read(limit + 1)
+    if len(raw) > limit:
+        raise ValueError("peer response exceeds size limit")
+    value = json.loads(raw or b"{}")
+    if not isinstance(value, dict):
+        raise ValueError("peer response must be an object")
+    return value
+
+
 def http_json(base, path, obj=None, timeout=15):
-    url = (base if base.startswith("http") else "http://" + base) + path
+    url = peer_url(base) + path
     data = json.dumps(obj).encode() if obj is not None else None
     req = urllib.request.Request(url, data=data, method="POST" if data else "GET",
                                  headers={"Content-Type": "application/json",
                                           "User-Agent": f"Aurion/{VERSION}"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read())
+    with urllib.request.build_opener(_NoPeerRedirect).open(req, timeout=timeout) as r:
+        return read_peer_json(r)
+
+
+class BoundedHTTPServer(ThreadingHTTPServer):
+    daemon_threads = True
+
+    def __init__(self, *args, **kwargs):
+        self.slots = threading.BoundedSemaphore(32)
+        super().__init__(*args, **kwargs)
+
+    def process_request(self, request, client_address):
+        if not self.slots.acquire(blocking=False):
+            self.shutdown_request(request)
+            return
+        try:
+            super().process_request(request, client_address)
+        except BaseException:
+            self.slots.release()
+            raise
+
+    def process_request_thread(self, request, client_address):
+        try:
+            super().process_request_thread(request, client_address)
+        finally:
+            self.slots.release()
 
 
 class P2P:
     def __init__(self, node, port, peers, public=None, bind="0.0.0.0"):
         self.node, self.port, self.bind = node, port, bind
+        if len(peers) > MAX_PEERS:
+            raise ValueError("at most 64 configured peers are supported")
         self.peers = set(peers)
+        for peer in self.peers:
+            peer_url(peer)
         self.self_addr = public or f"127.0.0.1:{port}"
         self.log = node.log
         self._gossip_lock = threading.Lock()
         self._checkpoint_locks = {}
+        self._sync_lock = threading.Lock()
+        self._outbound_slots = threading.BoundedSemaphore(8)
+
+    def _spawn(self, target, args=()):
+        if not self._outbound_slots.acquire(blocking=False):
+            return False
+        def work():
+            try:
+                target(*args)
+            finally:
+                self._outbound_slots.release()
+        threading.Thread(target=work, daemon=True).start()
+        return True
+
+    def add_peer(self, peer):
+        try:
+            normalized = peer_url(peer, discovered=True)
+        except (ValueError, TypeError):
+            return False
+        with self._gossip_lock:
+            if normalized == peer_url(self.self_addr) or len(self.peers) >= MAX_PEERS:
+                return False
+            self.peers.add(normalized)
+        return True
 
     def broadcast(self, path, obj):
         for peer in list(self.peers):
             target = self._post_checkpoint if path == "/checkpoint" else self._post_quiet
             args = (peer, obj) if path == "/checkpoint" else (peer, path, obj)
-            threading.Thread(target=target, args=args, daemon=True).start()
+            self._spawn(target, args)
 
     def _post_quiet(self, peer, path, obj):
         try:
@@ -1266,7 +1406,7 @@ class P2P:
         try:
             return http_json(peer, path, obj, timeout=10)
         except urllib.error.HTTPError as e:
-            return json.loads(e.read() or b"{}")
+            return read_peer_json(e)
 
     def _post_checkpoint(self, peer, cp):
         """Send transactions before the checkpoint and repair missing dependencies.
@@ -1331,17 +1471,26 @@ class P2P:
             return False
 
     def fetch_txs(self, peer, ids):
-        need, pending, rounds = list(ids), {}, 0
-        while need and rounds < 500:
+        need, pending, rounds, requested = list(ids)[:MAX_TXS_PER_CHECKPOINT], {}, 0, set()
+        while need and rounds < 50 and len(requested) < MAX_TXS_PER_CHECKPOINT:
             rounds += 1
             batch, need = need[:200], need[200:]
+            batch = [i for i in batch if i not in requested][:MAX_TXS_PER_CHECKPOINT - len(requested)]
+            if not batch:
+                continue
+            requested.update(batch)
             try:
                 res = http_json(peer, "/txs", {"ids": batch})
             except Exception:  # noqa: BLE001
                 return
-            for tx in res.get("txs", []):
+            returned = res.get("txs", [])
+            if not isinstance(returned, list) or len(returned) > len(batch):
+                return
+            for tx in returned:
                 try:
-                    pending[tx_id(tx)] = tx
+                    tid = tx_id(tx)
+                    if tid in batch:
+                        pending[tid] = tx
                 except Exception:  # noqa: BLE001
                     continue
             progress = True
@@ -1351,7 +1500,7 @@ class P2P:
                     st, info = self.node.add_tx(tx, relaxed=True)
                     if st == "missing":
                         for m in info:
-                            if m not in pending and m not in need:
+                            if m not in requested and m not in pending and m not in need:
                                 need.append(m)
                     else:
                         del pending[tid]
@@ -1366,10 +1515,18 @@ class P2P:
                 if st != "missing_txs":
                     break
         elif st == "missing_parent":
-            threading.Thread(target=self.sync_once, daemon=True).start()
+            self._spawn(self.sync_once)
         return st, info
 
     def sync_once(self):
+        if not self._sync_lock.acquire(blocking=False):
+            return
+        try:
+            self._sync_peers()
+        finally:
+            self._sync_lock.release()
+
+    def _sync_peers(self):
         for peer in list(self.peers):
             try:
                 info = http_json(peer, "/info")
@@ -1383,11 +1540,12 @@ class P2P:
                            and HEX64_RE.fullmatch(tid) and tid != GENESIS_REF]
                     if ids:
                         self.fetch_txs(peer, ids)
-                for extra in http_json(peer, "/peers").get("peers", [])[:50]:
-                    if extra != self.self_addr and len(self.peers) < 64:
-                        self.peers.add(extra)
+                extras = http_json(peer, "/peers").get("peers", [])
+                if isinstance(extras, list):
+                    for extra in extras[:50]:
+                        self.add_peer(extra)
                 peer_weight = int(info["weight"])
-                if peer_weight <= self.node.best_state().weight:
+                if peer_weight < self.node.best_state().weight or info.get("best") == self.node.best:
                     if peer_weight < self.node.best_state().weight:
                         # Retry a latest checkpoint after a previous delivery or
                         # connectivity failure; missing ancestors are repaired.
@@ -1395,16 +1553,20 @@ class P2P:
                             latest = self.node.cps[self.node.best]
                         self._post_checkpoint(peer, latest)
                     continue
-                start = max(1, self.node.height() - REORG_LIMIT + 2)
-                while True:
+                start = max(1, self.node.height() - REORG_LIMIT + 1)
+                for _ in range(MAX_SYNC_PAGES):
                     cps = http_json(peer, f"/chain?from={start}").get("checkpoints", [])
+                    if not isinstance(cps, list) or len(cps) > 500:
+                        raise ValueError("invalid checkpoint page")
                     for cp in cps:
+                        if cp.get("body", {}).get("height") != start:
+                            raise ValueError("peer returned non-contiguous checkpoints")
                         st, msg = self.handle_checkpoint(cp, [peer])
                         if st not in ("ok", "dup"):
                             raise RuntimeError(f"peer {peer} sent bad checkpoint: {msg}")
+                        start += 1
                     if len(cps) < 500:
                         break
-                    start = cps[-1]["body"]["height"] + 1
                 self.log(f"synced from {peer}: height {self.node.height()}")
             except Exception as e:  # noqa: BLE001
                 self.log(f"sync with {peer} failed: {e}")
@@ -1429,10 +1591,15 @@ class P2P:
                 self.wfile.write(body)
 
             def _body(self):
+                if self.headers.get("Transfer-Encoding"):
+                    raise ValueError("transfer encoding is unsupported")
                 n = int(self.headers.get("Content-Length", 0))
                 if not 0 <= n <= 4_000_000:
                     raise ValueError("Content-Length must be between 0 and 4000000")
-                return json.loads(self.rfile.read(n) or b"{}")
+                body = json.loads(self.rfile.read(n) or b"{}")
+                if not isinstance(body, dict):
+                    raise ValueError("JSON object required")
+                return body
 
             def do_GET(self):
                 try:
@@ -1482,8 +1649,12 @@ class P2P:
                             p2p.broadcast("/tx", body)
                         return self._send(200 if st in ("ok", "dup") else 400, {"status": st, "info": info})
                     if self.path == "/txs":
+                        ids = body.get("ids", [])
+                        if not isinstance(ids, list) or len(ids) > 200 or not all(
+                                isinstance(i, str) and HEX64_RE.fullmatch(i) for i in ids):
+                            raise ValueError("ids must contain at most 200 transaction hashes")
                         with node.lock:
-                            txs = [node.txs[i] for i in body.get("ids", [])[:500] if i in node.txs]
+                            txs = [node.txs[i] for i in ids if i in node.txs]
                         return self._send(200, {"txs": txs})
                     if self.path == "/checkpoint":
                         st, info = p2p.handle_checkpoint(body)
@@ -1492,9 +1663,7 @@ class P2P:
                         return self._send(200 if st in ("ok", "dup") else 400, {"status": st, "info": info})
                     if self.path == "/peers":
                         addr = body.get("addr", "")
-                        if re.match(r"^[A-Za-z0-9.\-\[\]:]+:\d+$", addr) and addr != p2p.self_addr \
-                                and len(p2p.peers) < 64:
-                            p2p.peers.add(addr)
+                        p2p.add_peer(addr)
                         return self._send(200, {"peers": sorted(p2p.peers)})
                     return self._send(404, {"error": "not found"})
                 except Exception as e:  # noqa: BLE001
@@ -1503,7 +1672,7 @@ class P2P:
         return Handler
 
     def start(self):
-        srv = ThreadingHTTPServer((self.bind, self.port), self.make_handler())
+        srv = BoundedHTTPServer((self.bind, self.port), self.make_handler())
         threading.Thread(target=srv.serve_forever, daemon=True).start()
         for peer in list(self.peers):
             self._post_quiet(peer, "/peers", {"addr": self.self_addr})

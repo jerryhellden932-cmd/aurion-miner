@@ -36,37 +36,41 @@
       "bytes": 6911,
       "sha256": "f5cf9f2784e2b12d2e9d198ce89fa77141e460874bf63de58ce71b0eb7d06806"
     },
+    "NODE_OPERATIONS.md": {
+      "bytes": 3935,
+      "sha256": "421c90ee9739fc9b2e2f2ae8eebd03f09dc753d17b710c89c7f88632594c8926"
+    },
     "README.md": {
-      "bytes": 4930,
-      "sha256": "1386795a7b15a841e68f3261a1d2caad4ac57717871507e449bc5651ad7c2192"
+      "bytes": 5215,
+      "sha256": "bedd10a1d534522d3e9b61992b730392f4f2bb5756858ef93ee325abbec1171c"
     },
     "SECURITY.md": {
-      "bytes": 3703,
-      "sha256": "1685387ba255dc5d74a3b0f8ed348721ddf70ac54d71e3ac387dd6e3feb272a4"
+      "bytes": 5339,
+      "sha256": "2ab5801ccdbd67f43349d184a9bc0f3a5b1a2763656edf79ed7c3eb554b2d00d"
     },
     "TRADE.md": {
       "bytes": 11369,
       "sha256": "ded89e767ad65b9d5be4679a6b71a56c6015ef3180c578133f9ed578358c9a84"
     },
     "aurion-exchange-kit.zip": {
-      "bytes": 74235,
-      "sha256": "85f3515d12acb2bc98a009a9a2ce1599421bba34bd2d64ccafe9bf0ed2e4ea59"
+      "bytes": 81732,
+      "sha256": "977cd2f363ecfb1f424049347f45d07aedf438a55a15547f6a00e047e37bfa20"
     },
     "aurion-linux.zip": {
-      "bytes": 74484,
-      "sha256": "d18b052f0c1a9fd597af187b5981b1ff4556eff545ba495e7adab8f99e3f7991"
+      "bytes": 81981,
+      "sha256": "940b0480e96d24f3b2d1a24a0cdd7216a1d4366a035bd3b5780d272e2c68cd4f"
     },
     "aurion-macos.zip": {
-      "bytes": 74494,
-      "sha256": "244b631692627463da8bfedce420afe00dfd0a2af52e78775365270c7b22bda8"
+      "bytes": 81991,
+      "sha256": "0fedd5b0d5d177f306ea721401ec56ef9788183667298ea241bec735e57e0085"
     },
     "aurion-windows.zip": {
-      "bytes": 74437,
-      "sha256": "8768f7c7de74073a43c95a3f2a1dc79dd324626cc8e35769fc5b0b61d74ec1ee"
+      "bytes": 81934,
+      "sha256": "fdfb7f88394e532eac2d8f54c184e5b30972109196e6b4ee91e3682530b26fa2"
     },
     "aurion.py": {
-      "bytes": 93330,
-      "sha256": "3de68c15e04948cf9ef7fbcc144e99c281953c98fb9d3326dae9496b1c52f544"
+      "bytes": 100899,
+      "sha256": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a"
     },
     "ethereum_swap.py": {
       "bytes": 11313,
@@ -96,6 +100,14 @@
       "bytes": 19651,
       "sha256": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128"
     },
+    "network_health.py": {
+      "bytes": 2587,
+      "sha256": "56292b5d8b45b91e4ebee327748f5a77e08f7bd65a6099c3aa8571ff8ea0c769"
+    },
+    "node_backup.py": {
+      "bytes": 3353,
+      "sha256": "9e2d06ee3dcd0f01b57353c19522a8f2b478e8f2446f122ccff925e3deca46e2"
+    },
     "openapi.json": {
       "bytes": 29602,
       "sha256": "cc7a08ead9eb8b9befd4046f5ba66b76c050c240dd8b43334663598fdadd897a"
@@ -115,7 +127,7 @@
   "release_stage": "unaudited_experimental_mainnet",
   "schema_version": 1,
   "seed_node": "https://node.aurioncoin.io",
-  "software_version": "0.2.0-experimental",
-  "version": "0.2.0",
+  "software_version": "0.2.1-experimental",
+  "version": "0.2.1",
   "zip_timestamp": "1980-01-01T00:00:00"
 }

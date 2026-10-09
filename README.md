@@ -1,4 +1,4 @@
-# Aurion desktop miner 0.2.0
+# Aurion desktop miner 0.2.1
 
 Aurion is an **unaudited experimental mainnet** with known consensus and
 signature weaknesses. It is not proven quantum resistant or ready to protect
@@ -34,7 +34,10 @@ location: avoid signing from the website and desktop concurrently, from old
 exports, copied wallets, or restored backups. Wallets have 1,024 one-time
 signing slots; reusing a signing slot can compromise funds. Plot signing keys
 also expire and require replacement plots. Wallet encryption does not prevent
-one-time signing-key reuse.
+one-time signing-key reuse. Release 0.2.1 adds a `.signing.sqlite` high-water
+journal at the wallet path; keep it intact. It protects restoration of only the
+JSON at that location, not copies or restoration of both files. Failed saves
+can deliberately burn slots. NODE_OPERATIONS.md covers backup and monitoring.
 
 Your miner keeps its own ledger, validates checkpoints independently, and
 automatically joins the seed https://node.aurioncoin.io. The default local node

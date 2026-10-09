@@ -1,4 +1,4 @@
-# Aurion 0.2 security status
+# Aurion 0.2.1 security status
 
 This public network is an **unaudited experimental mainnet**. It is not proven
 quantum resistant, production ready, or suitable for protecting valuable assets.
@@ -26,7 +26,31 @@ explained. Publishing this network does not resolve them.
   Timeout examples must be recalculated for the selected network. Never assume
   script generation alone establishes safe cross-chain trading.
 
-## Changes verified in this release
+## Changes verified in 0.2.1
+
+- Desktop signing now records an independent SQLite high-water mark before
+  writing the wallet JSON. Restoring only an old JSON at that same path cannot
+  rewind this journal. Same-process signing reservations are single-use, and
+  failed saves burn a signing slot. Whole-directory rollback, copied wallets,
+  other devices and cross-platform/website coordination remain unresolved.
+- Desktop ledger writes complete before acceptance becomes visible in memory.
+  Startup validates stored object hashes and signatures and rejects a different
+  genesis or corrupt journal. The seed verifies journal kinds and object IDs.
+- Peer responses, dependency fetches, concurrent HTTP requests, outgoing work and
+  synchronization are bounded. Discovered peers cannot point at private-network
+  addresses or arbitrary DNS names; peer redirects are disabled. This is not a
+  comprehensive denial-of-service defense.
+- Added regression tests for failed persistence, restarted ledgers, JSON rollback,
+  peer abuse, actual fork-choice receipt removal, backup restoration and monitoring.
+  A passing regression also reproduces the still-unfixed storage claim attack.
+- Added replay-verified native SQLite backup tooling, monitoring that detects a
+  stalled chain, and a persistent non-mining node service template. These do not
+  establish multiple independent deployed operators.
+- An isolated upgrade harness uses standard ML-DSA-65, dual-key rotation and a
+  native proof-of-space verifier. These candidates are **not active on mainnet**
+  and do not constitute an audited consensus replacement. See PROTOCOL_UPGRADE.md.
+
+## Previously verified changes
 
 Same-file wallet writers now use a persistent cross-process lock, reload durable
 signing state and reserve indices before signing. Private writes use restricted
