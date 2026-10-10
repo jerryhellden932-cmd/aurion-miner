@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "update-preservation-qualification",
+  "date": "2026-10-10",
+  "protocol_source_sha256": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+  "mainnet_genesis": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+  "real_funds_qualified": false,
+  "paid_services_activated": false,
+  "verification": {
+    "javascript_test_files_passed": 23,
+    "native_update_tests_passed": 19,
+    "operations_tests_passed": 6,
+    "code_only_preparation_tests_passed": 4,
+    "browser_controller_cases_passed": 39,
+    "recovery_cases_passed": 14,
+    "deployment_cases_passed": 14,
+    "independent_internal_review": "no remaining preservation blockers"
+  },
+  "disposable_mining_rehearsal": {
+    "network": "aurion-regtest",
+    "genesis": "2c757a012f7644b5fd7eb62d1489479c5959f9d0ca1d1327596282222791b905",
+    "height": 5,
+    "best": "dde2f978fea36c155eb9bd88e87481de838981cbc76d4a56c48b4572b5e82cd0",
+    "minted_base_units": "52447500000000",
+    "balance_base_units": "52447500000000",
+    "replay_equal": true,
+    "state_sha256": "16481c97adef3b6a21e153c35b1a1fdd02127d0ca36181db96264147f9c6b9fd",
+    "ledger_sha256": "fe241f735d90f7fb97d18531faaa8a751f4a4476e6a5561c538e4a3d40bc3df2",
+    "wallet_floor": 1,
+    "plot_key_floor": 6,
+    "original_data_preserved": true,
+    "actual_funded_user_data": false
+  },
+  "limits": [
+    "Actual funded user wallet/mining data was not available for verification.",
+    "Native browser crash durability and native Windows execution/ACLs were not verified.",
+    "Use one current signer and preserve original wallet journals/plots.",
+    "Unknown post-backup signing and whole-profile rollback require separately trusted records.",
+    "The legacy protocol remains unsuitable for valuable funds."
+  ]
+}
