@@ -1,0 +1,9 @@
+{
+  "notice": "Generated disposable k18 test plot; not a production security parameter",
+  "library": "chiapos==2.0.12",
+  "plot_id": "aaa32b7479613f12d197a6e86029feaeb125f9fba96089df3c39b7b868384307",
+  "k": 18,
+  "challenge": "b40711a88c7039756fb8a73827eabe2c0fe5a0346ca7e0a104adc0fc764f528d",
+  "proof": "4907386f4d1c3ea6d74258fadf5a7a5727376d00ce828a2add0567e94ad8047cc7b0c6bc34558df2c38ac11b588b97a546e7c2b1bd2d927fceb17cf4b55b268c0c40f8b8212d6b0677669487d0b9f0c4c0fde29a1a677a8def7c8bd6886e114d70e7180117c351304f9d2c4feb6f5a4585820c01bb74cef7f8794fdee6601432ce2b7c7792dea45ed57b96a8984e197b",
+  "quality": "5d6774dbc86fec919a537510ce0bede8cdf9faaf00c4a9787c95523d822bb140"
+}

@@ -1,0 +1,1100 @@
+{
+  "schema_version": 1,
+  "kind": "aurion-isolated-offline-upgrade-qualification",
+  "recorded_at_utc": "2026-10-10T10:06:35.238837+00:00",
+  "real_funds_ready": false,
+  "security_certification": false,
+  "activation_authorized": false,
+  "mainnet_upgrade_activated": false,
+  "balances_migrated": false,
+  "independent_audit_verified": false,
+  "independent_node_network_verified": false,
+  "live_user_wallets_or_signing_journals_verified": false,
+  "daybreak_used": false,
+  "new_paid_services_requested": false,
+  "basis": "Fresh local engineering checks on the listed exact files. This self-reported record is not independent certification.",
+  "test_snapshot": {
+    "raw_report_sha256": "e4aa7aa6ff97895ed5c4bdb4a106e3cf148836e83d9b6d333e895f1786fe375e",
+    "source_fingerprint": {
+      "public_inputs_sha256": "d0224c4c20c9f102b702301237a4ec8603ffbb373e29e781bd4406a17adb01b0",
+      "files": {
+        "coin/aurion.py": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+        "coin/cloud_miner.py": "63592340cc6ff105a96909d840d69c50da6674506318f68b3992a9672a8f16bd",
+        "coin/ethereum_swap.py": "0f54e7f5ae5fdd6ce5a813fc66a3f502a4b07248cd1a6cfcac58fdeb6b847ec8",
+        "coin/exchange_api.py": "3c750bb500d9b10f707ff4e1de38c1ad12d7e6e07a9e89cc90bda53a6da28bb6",
+        "coin/exchange_client.py": "f023974beca228470919c986baf9fa978eb992eb2471d3e907d91482b23b8b03",
+        "coin/launcher.py": "35ed1a8969bc298c0ffa2c84758a2697c079c0d94204fbe3083c79def914b90d",
+        "coin/market_client.py": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128",
+        "docs/AUDIT_SCOPE.md": "97b872b37cba53842422d68780c1eaaa487f72f7ce50d4f356de6564dfd0da4c",
+        "docs/NODE_OPERATIONS.md": "2d8ed190fc04f53d8e9e97352998708b52b2ab6ed12c69924ce0f489363e5d0d",
+        "docs/PROTOCOL_UPGRADE.md": "2e4aee07ef73c45224696117ab195f668ce28517062686c119512cf780c2a6ec",
+        "docs/REAL_FUNDS_VERIFICATION.md": "41f7f96ec85a28bec1b61f107d03665736e0b0d0bb87b25d2bb9dc0dbfb04322",
+        "docs/SECURITY.md": "d4025e84e3f1d44f15f5c9ff35371f31853bd98a8fbe573f0ca630cf99a46ecd",
+        "docs/UPDATE_AND_RECOVERY.md": "00e9e8fa5bd5ef9fb618d5f390eae79978df517baa288034d6e13d8031800ee9",
+        "docs/genesis-config.json": "75a3350d10e3c72ca0467736ba089b0b09feddca414093ed6faffbcfb2e1217e",
+        "docs/genesis.json": "908b5fa44d7b29fefef3ffcce4d930b912e8b20e71d33b0e2f5a197661bac5b3",
+        "package.json": "fa73440176e39a6f4c9430d15aedd01fea89bdf8ccca9bec34e240398cb39256",
+        "scripts/build.mjs": "4aec9c3afb7f0510edb6679da5aaf80a65170d8e2ec8c7eea4435df82fcfb559",
+        "scripts/build_seed.py": "0c67c202573abc2b79fa3837388ba3b5d50a35b1371953ae22af31dc2d5c7f47",
+        "scripts/check_migration.py": "8df50a3cc53945855a149b0549249b97b14321fdad48ef4a8e8bb0bb264ed5b3",
+        "scripts/check_readiness.py": "8c1bf6ccd5ec48454f512812d77c7506eeb3c9546000825bd3b06114b0205bd0",
+        "scripts/deploy.mjs": "8e01b896cb44731ec3954b46772d2ed8259a38ae9f00857ed0fdc5656238d4fa",
+        "scripts/network_health.py": "56292b5d8b45b91e4ebee327748f5a77e08f7bd65a6099c3aa8571ff8ea0c769",
+        "scripts/node_backup.py": "9334c87756047a999648ffdf548aa8a04b486cf4e1a29936a8f621cce6f87244",
+        "scripts/package_downloads.py": "c2badbb5606d1db92906e41aa8ff45830f1b4af35abc9d8547859f94b52f1128",
+        "scripts/prepare_deployment.py": "10fbb5dd6381f85bde1eeaaed2ba003d2207e309919b0801a324c0c61da66a6f",
+        "scripts/prepare_public_release.py": "45a4340bcdb4f5761cdad24a90df02d2143124b783c5c3636ef9603bbcf186a4",
+        "scripts/preview.mjs": "07b014c713d796ae9390099b0a46802a4c47637e70d8ed478117c90ffa03f317",
+        "scripts/probe_legacy_consensus.py": "d6de0cabcf17095a2e144a4b0dc47b84d5b23e53d0d8cba240abcfd702415fec",
+        "scripts/update_guard.py": "c9567ed2111a56a5b1e85b86d09a8960777bda3c2dce5f14d1114882844494eb",
+        "seed/core.py": "b6ad74e574311839d2dd1a62f3a2d52e805639639688f5c155948065c599d411",
+        "seed/entry.py": "504962e2d9515b845a5e83927c3cfc813b683434e4a7fc1c60ce43985a163864",
+        "server/accounts.js": "4eac8292cf5ed4780b9adcf17399d6542f732653962bc2095cae13c7df5050c7",
+        "server/auth-crypto.js": "e3a3842ebb0fa1ce4dcbd3a79bc8bf5dd2f1adc17150fe06ce310224c56bb079",
+        "server/bitcoin-billing.js": "712f11946ace677e66d3235be237231471f5938442a4438d6ad2660d5727a4af",
+        "server/cloud-http.js": "6ffcd8fa5036e230239b729d4368acb2596ddb8b0b29c6c0ffe4d1a6aa7ffbf4",
+        "server/cloud-mining.js": "0696738d83ef1f087bfa3e5574aa638264ecee146820de12ad055d7976aca7cf",
+        "server/eth-artifact.js": "31c021f2cb1179b2247e8a2bc4d35c459477e81fcad529d5663a35afc3ddf70e",
+        "server/ethereum-billing.js": "dd12a53a71e3bb26d42ed28a5f22a4fecb6dcaa149ec43121d3a3ffb71f1bdf1",
+        "server/founder-access.js": "e30fbd43eae6da42a30f54ebfdd20a3eabdc12a215f8a52ca2a68bf20d75d146",
+        "server/http.js": "6dc1d16034928e0de70f56297a508e2baeb0257f019de73137db8cf422a58d30",
+        "server/market-http.js": "5e8e6be454a24f41a3583ee10ce58410173bb0d6c36a0ea53e579e9b7bdb776e",
+        "server/market.js": "b826b760d2de82b793d8d892d808d40b1a38e2280187f1ca1eea700ef7ce3b3a",
+        "server/page-metadata.js": "42f276766be0a78cf3b7e527081fd8714343c5a6918e25e02c404834361719a6",
+        "server/page-render.js": "72c0722386fe29b8d701e4ca7f522cdfe17d5c31eee1a00cda38e131c11cfc23",
+        "server/public-release.js": "9a0b18346246854519f1ef4412083f69c2bc175956f4a671af93616fe1e57dce",
+        "server/settlement-verifier.js": "71fc09b5b80563c2c1d76173530afc4e06f2d1b4bf877bdfd489742b56fcd489",
+        "server/sha3.js": "eb18190e0bf0c815ed0520ad461f3bba287e51f4cf1f782229a2575111c2ab3b",
+        "server/site-http.js": "32f105418b15c017fa712f8d987fd7eb948299003746b52a03e6fb15b17778a0",
+        "server/swap-http.js": "a6da3d799ec8e4d86221df331da4b419a070c5fa86571281bc58885a388fa82b",
+        "site/.well-known/aurion.json": "dcf7d1cdbdf2edeb84e8ff8d88cbabc4fbddefe9112eab4fb32696dedc78af17",
+        "site/app.js": "ead54b16e2315d7d703846d0a80edd7f2174c89a45282f46de474fc4854f98f8",
+        "site/cloud-mining.js": "202fdf6e7702e55f113c27115ea397bf088e655717c306322b0c69237730ded3",
+        "site/downloads/AUDIT_SCOPE.md": "97b872b37cba53842422d68780c1eaaa487f72f7ce50d4f356de6564dfd0da4c",
+        "site/downloads/AurionHTLC.abi.json": "3a176da31a7ccb22cc51b2a375affe1e5f002a2440e4d1f0f701d701e2879402",
+        "site/downloads/AurionHTLC.artifact.json": "25041ce57b4f6b7e24383cbad08471e72f9c2acb50aa5f46e8b99a9851470527",
+        "site/downloads/AurionHTLC.sol": "5301244714f49bab7e5860a5b68c191d57d0bce295ee4f2f7b4a2e372a3f2f22",
+        "site/downloads/BITCOIN_BILLING.md": "033e80275a5f5ddcd5e48a3374ef1adab44d64cdad46a456c3de758e783c850d",
+        "site/downloads/CLOUD_HOSTING.md": "4b1b1a4496abc53e53a30a18d6a17653def7b525f8d45f86c842449a9a0d5643",
+        "site/downloads/CLOUD_MINING.md": "341158e80c8f866a0bbf23678260b99a634b3f0b0714f73318ae9dfd4646ff1e",
+        "site/downloads/CLOUD_MINING_DESIGN.md": "7a367f57d78af34f30bd0ba5f4a837bceb45f45243d6e4edf44b753a58b663f1",
+        "site/downloads/CLOUD_WORKER.md": "79dab4e5e833f59e2b6a1dba02f6192aaeeffaa178df61fb1ed3fc1831b526c0",
+        "site/downloads/ETHEREUM.md": "2a5b5b56a98b14214baf64d59f1eebc207f8a43151505edda0f29cbc56395594",
+        "site/downloads/ETHEREUM_BILLING.md": "0ce059bcc65054f05031ad1aaf80a6ccbd02af86386a9e68332c618dd6771841",
+        "site/downloads/EXCHANGE.md": "484c58d78ef4f968927cda32f7269376921858e80b249b6c9aa7c220f5bf3e8c",
+        "site/downloads/MARKET.md": "f5cf9f2784e2b12d2e9d198ce89fa77141e460874bf63de58ce71b0eb7d06806",
+        "site/downloads/NODE_OPERATIONS.md": "2d8ed190fc04f53d8e9e97352998708b52b2ab6ed12c69924ce0f489363e5d0d",
+        "site/downloads/PROTOCOL_UPGRADE.md": "2e4aee07ef73c45224696117ab195f668ce28517062686c119512cf780c2a6ec",
+        "site/downloads/REAL_FUNDS_VERIFICATION.md": "41f7f96ec85a28bec1b61f107d03665736e0b0d0bb87b25d2bb9dc0dbfb04322",
+        "site/downloads/SECURITY.md": "d4025e84e3f1d44f15f5c9ff35371f31853bd98a8fbe573f0ca630cf99a46ecd",
+        "site/downloads/TRADE.md": "ded89e767ad65b9d5be4679a6b71a56c6015ef3180c578133f9ed578358c9a84",
+        "site/downloads/UPDATE_AND_RECOVERY.md": "00e9e8fa5bd5ef9fb618d5f390eae79978df517baa288034d6e13d8031800ee9",
+        "site/downloads/aurion.py": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+        "site/downloads/cloud_miner.py": "63592340cc6ff105a96909d840d69c50da6674506318f68b3992a9672a8f16bd",
+        "site/downloads/ethereum_swap.py": "0f54e7f5ae5fdd6ce5a813fc66a3f502a4b07248cd1a6cfcac58fdeb6b847ec8",
+        "site/downloads/exchange_api.py": "3c750bb500d9b10f707ff4e1de38c1ad12d7e6e07a9e89cc90bda53a6da28bb6",
+        "site/downloads/exchange_client.py": "f023974beca228470919c986baf9fa978eb992eb2471d3e907d91482b23b8b03",
+        "site/downloads/genesis-config.json": "75a3350d10e3c72ca0467736ba089b0b09feddca414093ed6faffbcfb2e1217e",
+        "site/downloads/genesis.json": "908b5fa44d7b29fefef3ffcce4d930b912e8b20e71d33b0e2f5a197661bac5b3",
+        "site/downloads/market_client.py": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128",
+        "site/downloads/openapi.json": "cc7a08ead9eb8b9befd4046f5ba66b76c050c240dd8b43334663598fdadd897a",
+        "site/eth-settlement.js": "417c002ea3ae001b44f1e29c457fddf57a2ff0db5ee68220dbd206d2e55f85d3",
+        "site/external-wallets.js": "46348c6bc63ff6b1d55c7e9ec69f913715287a45cafae37edfb622d3553ba513",
+        "site/favicon.svg": "9346f082e0ccda2e733cd3eb88b84dcae0fe978bcfba897560d905a8217a04d8",
+        "site/index.html": "be53a16903703a45cd0075effff188256edbb4e1da4ed7e8374d2951b80199df",
+        "site/market-settlement.js": "3aa0954fa315636bf0aa41fa4f4be081ac44420875b00142e51327fbeb37084c",
+        "site/readiness.json": "3adf389d148c9acdf7af2601ce14b0429540cdb3b356ae4fedbda19fea59cec8",
+        "site/recovery-backup.js": "35a07ea0d22886d38449fa99031e341b2c2d143b1bc136ae04b031e0a68e11d7",
+        "site/robots.txt": "0988de5fc18b4f2d9fb7e4d9b701d1ed337c08e635bb09d2ad79d20ab832381c",
+        "site/sitemap.xml": "3721006cedf52fbd8f31f43512193f00795a5015c07a908633ed575010262da9",
+        "site/social-preview-20261009.jpg": "da9bb4928ffa4db9f84d4667b579a73db421acce973ff200785bdc470567fcf7",
+        "site/social-preview.png": "ae5e0c1ce101910a60856348061aecb4057b4014d54eee60c350f6c80896627a",
+        "site/style.css": "0f2e26d4293e385b5cdeb9d7fb1dbf11478bff224c05daf558ea39ace8fc4d98",
+        "site/transaction-outbox.js": "1657524412f61a397c2febb44368a077cc0a9b41cfcb53fe0b8f77c5c31f50e7",
+        "site/vendor/scrypt-LICENSE.txt": "e182fbf51b160132f831a9188eaf52602b9646718820084672a591ef39a48372",
+        "site/vendor/scrypt.cjs": "6af879d5b48afd7a75c0427bbfd8562742f513ad9aab998341f5529c217ebc2b",
+        "site/vendor/sha3-LICENSE.txt": "8347d2452b503975f5a902eeea52cddb0d1b7d4e764fb42c5c97d68fcacae964",
+        "site/vendor/sha3.cjs": "eb18190e0bf0c815ed0520ad461f3bba287e51f4cf1f782229a2575111c2ab3b",
+        "site/wallet-crypto.js": "45478c17efc57c017500c7108353aba6867b7578ff0fbb9796f8cde287bf533e",
+        "site/wallet-store.js": "c4e30f051859a775e028881fe721c21ba5930b4a6df1ed67b5b1034c3865a4f0",
+        "site/wallet-worker.js": "a5d5b0a06adffb313a0cc1be788f2590f31241cdc48d1d140d50c1cfa7dbdc62",
+        "tests/accounts.test.mjs": "75da6262aba8e09719ab2e490a67e1dc5f3d324d0bb876e92dc9b5c761b42bc8",
+        "tests/bitcoin-billing.test.mjs": "93e78a5d1951f7558e6bbbb1813e2b68b4e5a810383cfcb15b5ff36296bfec38",
+        "tests/browser-privacy.test.mjs": "feb0d2bf9a3ff5c66e951b33270694699d9a0991a1cc723b89612521e07ddad8",
+        "tests/cloud-http.test.mjs": "67b345ecc20e4f4f72e58a9e6f6ab54f40658bc8a8ec1b37cab858a593d6c2f0",
+        "tests/cloud-mining.test.mjs": "e7fc2ca4605d35b4e8e3b4973a3f4bc4a6dd593b105e2b17d2587af3a894f1ec",
+        "tests/deployment-safety.test.mjs": "c64cecf83f11d7d0a08ed59df929bad2e0eabc5ac03d05355d6222013477a582",
+        "tests/eth-settlement.test.mjs": "8caa52d6e016c47ac4939a7ebb40133e4f2e39e9feb972377726e80ab49e4002",
+        "tests/ethereum-billing.test.mjs": "dad768d7e691f1da2e74f62510af7864ee61cbbd7f1111bf3c074bc14577f6ab",
+        "tests/external-wallets.test.mjs": "de5a73d15b9855419130922ddb4792e97365519836bf56de02efb7823c18965e",
+        "tests/fixtures/mldsa-interop.mjs": "e1d311f413d1aab5d61a9216c46cc440dcfddb99593ec677178d3ba54fdb7131",
+        "tests/fixtures/space-proof-bound.json": "aaf2175dbfcdbadd051a1e714fa1457baa1c3c1f0c3aa3744d8843b5890119e9",
+        "tests/fixtures/space-proof.json": "cc4effda9a52413e2ab06a77eda0dbde9092001a963bda3691b5ad6c0bfa3963",
+        "tests/founder-access.test.mjs": "8ed2f9f547cdc21f949ef5cfb7b0d53ec899e7ecb03c694dff93b91b0970e4a5",
+        "tests/market-http.test.mjs": "8bd838ffc6e99df1d0149abf1e73d7d01530c9b5cbe277a1e0dacb7246e05dc7",
+        "tests/market-settlement.test.mjs": "3b245654dd2371697ba6a015048f2194ad4b378ea0497d34b924f3b48c8e740c",
+        "tests/market.test.mjs": "0cc17568eaa6e516e8aa0f7a6e231287aba680a59760f69a458f036f427ab07d",
+        "tests/public-release.test.mjs": "8008fb91155ac598d4df7de405bbae544d5d59f25ca34cc0d857a86f5cd04e79",
+        "tests/recovery-backup.test.mjs": "ef0b987628074dc135caecdc10a13f572975e52358a9a72821edd7aaef44f70f",
+        "tests/settlement-verifier.test.mjs": "baa2e41084189d118f69df8482a16110e3b23d7d9b4407c8122aaf28dea85cab",
+        "tests/site-privacy.test.mjs": "b51f8236a86e6b5ba17d383730872f90e7e097293577d2d65fdd3a012d8805c2",
+        "tests/social-preview.test.mjs": "8748154e3002c75ae1e81fb7d3f23ca001c955caea9df9da30e9842511a2b959",
+        "tests/swaps.test.mjs": "4ae61edd3a56c14b80488699eff3247cad3c1c3e826135078f83dadf591e5f05",
+        "tests/test_adversarial.py": "ef2e0f50f38952c32f7177ad98e614c2993c485f74c6a59a8d565264385915e8",
+        "tests/test_cherry_capacity.py": "76b0ada324fd5b99765776e1e6b057d4444a66be892b8f0db078977f5beb6b16",
+        "tests/test_cloud_miner.py": "03ce9e655f2d6923950427650a7189140e1d1915f2a20daec36a57646d8055a4",
+        "tests/test_coin_hardening.py": "d326eea27104ba7780b8a26138254519cbf451f3c87212ca83cc9fd72271fd33",
+        "tests/test_consensus_candidate.py": "dee3a97d37f6920af97a9c5f4a9ed7122febe5ac078c17291dad5ed7d4612c2f",
+        "tests/test_ethereum_settlement.py": "860db4e0b46b2f64f7eb0ac3df844eaa6a54100c0143419cd84922524666c3a9",
+        "tests/test_exchange.py": "a1f9db977f95cc6525a1065605d5bf087e7077fbb05781c545275b1a5a7e7770",
+        "tests/test_htlc_receipts.py": "ee56c16513daf7725eaab3aa262cb2d4393d3d7738a817484b2c211fc8cb93a4",
+        "tests/test_market_client.py": "b9e115f813fde8680dd8c56953de45bd15780697fbf1c9d8580233ec2d634ac9",
+        "tests/test_migration.py": "10fb38652a0409e83532cc02b26d4edfac7c99cc670c0bfad037648d6142895e",
+        "tests/test_mldsa_interop.py": "58edde07c89943e14656a648e889fd3662aedfb87812a77c15d79cc5b33597b0",
+        "tests/test_operations.py": "67765c5970605ded929d24080619ca73c2d8733d80a4398f5cfcbb08fc6613e2",
+        "tests/test_prepare_deployment.py": "a983cce826ed4bc5060dbcccf03500923a3158b177e58a9992e8368c07d5adc9",
+        "tests/test_readiness.py": "2e91cf9867b42fcee3731e2d4146a23904ccfea61cce59f24e4f9874a4090257",
+        "tests/test_seed.py": "d05248bb8c93b287a910d0f43a2fdad6198ef31849b3882294876499c4e22adb",
+        "tests/test_update_guard.py": "aafaee42c5fc2ead238e58a5e4abfaf0119e1a806612a3eecf25c3734a2cead7",
+        "tests/test_upgrade.py": "3e2e357484d21813cb2d5276978f66961fa9fe8f6926e0dc66bdb4b74027676c",
+        "tests/transaction-outbox.test.mjs": "d0ad0f98325cc7f7e37d8907eebdb8c710d09321ab355e582c77d5e47e6c0098",
+        "tests/transfers.test.mjs": "30e2e5987ad8397abdd5eb0d214b44442feecb12a1d995fcaf0a1b0ff15f94b1",
+        "tests/wallet-store.test.mjs": "f9c6311876ffd08163b71f5f8ee57971aead6a3f45cb6a955a49b54eae1b203f",
+        "tests/wallet.test.mjs": "bc3bc37a5f611ff250f78e9821cbfe28a19f1ace7e7edb470b1889c5dd0347b5",
+        "upgrade/consensus.py": "dcf8f957be3ea408a2d9ba8c24151aabb85baf8e7a0758973e40769e9d49d607",
+        "upgrade/preservation.py": "b352a4acaecac4cb310969bba86b75d6b1f5f958a1f8b87d37cbc8b63f47eb77",
+        "upgrade/protocol.py": "5285331ef447d4998b3bf40d241bf7770dbf2d304cfbc51f3d97b1dbc9f2987c",
+        "upgrade/requirements-linux-py312.txt": "fa2034b61a573a50bb0aa38d17fca5e234cc13da8747f75180825dd604d841bb",
+        "upgrade/requirements.txt": "045ce7e68dfb991183c703733701ef76f75e970aaafe3fbf3d08409303fe998a",
+        "upgrade/storage.py": "7a46038d9e49fe25a8b500d5754c1a9534cbd280ea838e77940d1f1785846840"
+      },
+      "scope": "Listed public source/tests/docs; excludes .private, live databases, generated dist, dependency environments, five rebuildable ZIP/checksum downloads and the generated site/verification.json report."
+    },
+    "all_source_inputs_unchanged_during_and_after_tests": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "architecture": "x86_64",
+    "cryptography": "50.0.1",
+    "python_openssl": "OpenSSL 4.0.2 25 Aug 2026",
+    "chiapos": "2.0.12",
+    "node": "v24.19.0",
+    "openssl": "3.5.7",
+    "wheel_lock": "upgrade/requirements-linux-py312.txt",
+    "wheel_lock_sha256": "fa2034b61a573a50bb0aa38d17fca5e234cc13da8747f75180825dd604d841bb",
+    "wheel_hash_lock_verified": true,
+    "wheel_hash_note": "Downloaded direct and transitive wheels verified using pip --require-hashes; not independent provenance or certification."
+  },
+  "tests": {
+    "python": {
+      "tests": 229,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "issues": []
+    },
+    "javascript_tap_cases": 284,
+    "javascript_tap_files": 20,
+    "javascript_assertion_only_scripts": 3,
+    "assertion_script_case_counts_available": false,
+    "failures": 0,
+    "skips": 0,
+    "candidate_case_names": {
+      "test_upgrade": {
+        "UpgradeTests": [
+          "test_transfer_restart_and_replay_rejection",
+          "test_rotation_requires_both_keys_and_retires_old_key",
+          "test_changed_rotation_proof_and_fields_rejected",
+          "test_standard_key_sizes_tampering_and_domain_separation",
+          "test_restored_seed_can_sign_new_messages_without_one_time_key_reuse",
+          "test_failed_commit_rolls_back_balances_and_nonce",
+          "test_mainnet_and_noncanonical_values_rejected",
+          "test_concurrent_ledgers_recheck_current_key_and_nonce",
+          "test_caller_key_mutation_after_verification_cannot_authorize_another_account",
+          "test_persisted_event_keeps_the_exact_verified_snapshot_after_caller_mutation",
+          "test_envelope_size_and_depth_bounds_reject_before_starting_a_write",
+          "test_wrong_stored_chain_does_not_create_or_change_schema",
+          "test_failed_initialization_rolls_back_schema_and_closes_connection",
+          "test_missing_chain_metadata_cannot_relabel_existing_ledger_or_change_state",
+          "test_missing_accounts_or_events_after_signed_transfer_cannot_be_recreated",
+          "test_changed_columns_after_signed_transfer_are_refused_without_rewriting_state",
+          "test_unexpected_trigger_view_and_index_preserve_existing_signed_history_on_refusal",
+          "test_altered_constraints_and_options_preserve_existing_signed_history_on_refusal",
+          "test_original_multiline_constructor_schema_reopens_without_changing_history"
+        ]
+      },
+      "test_consensus_candidate": {
+        "SyntheticDAGModelTests": [
+          "test_model_evidence_never_claims_native_or_production_verification",
+          "test_production_domains_and_verifier_injection_are_unavailable",
+          "test_genesis_binds_key_schedule_caps_and_detaches_mapping",
+          "test_registration_binding_and_legacy_claims_rejected",
+          "test_beacon_authentication_equivocation_unknown_round_and_domain",
+          "test_parent_bound_sequences_and_duplicate_signature_identity",
+          "test_challenge_is_fixed_for_round_excludes_producer_header_choices",
+          "test_unknown_dependencies_invalid_quality_and_bounds_do_not_enter_dag",
+          "test_signed_inputs_are_detached_before_authentication_and_storage",
+          "test_complete_bounded_long_branch_and_heavier_branch_converge_in_permutations",
+          "test_lab_equal_weight_tie_break_is_height_then_header_hash",
+          "test_capacity_overflow_withholds_tip_and_never_prunes_history",
+          "test_replay_requires_external_pins_and_reauthenticates_detached_records",
+          "test_replay_omissions_and_bool_integer_configuration_aliases_fail_closed",
+          "test_oversized_and_deep_replay_inputs_are_rejected_before_native_setup"
+        ],
+        "NativeDependencyAndIntegrationTests": [
+          "test_missing_and_wrong_native_dependency_fail_closed",
+          "test_real_legacy_fixture_verifies_only_standalone_not_owner_registration",
+          "test_genuine_owner_bound_native_registration_beacon_and_checkpoint",
+          "test_genuine_native_proof_rejects_changed_plot_challenge_size_and_bytes",
+          "test_genuine_native_candidate_rejects_owner_k_challenge_and_plot_transplants",
+          "test_invalid_native_proof_at_capacity_preserves_the_complete_valid_dag"
+        ]
+      },
+      "test_migration": {
+        "MigrationTests": [
+          "test_replay_preserves_all_forks_balances_rewards_swaps_plots_and_pending_dag",
+          "test_deterministic_packets_and_exact_verification",
+          "test_self_rehashed_tampering_cannot_omit_change_or_inflate_preserved_state",
+          "test_separate_source_ledger_genesis_checkpoint_pins_are_all_required",
+          "test_altered_metadata_wrong_network_and_trust_self_claims_rejected",
+          "test_duplicate_rows_out_of_order_counts_and_unknown_kind_rejected",
+          "test_signature_corruption_and_hash_body_substitution_rejected",
+          "test_duplicate_json_fields_nonfinite_and_oversized_inputs_rejected",
+          "test_source_pins_checked_before_execution",
+          "test_special_file_is_rejected_without_waiting_for_a_writer",
+          "test_exclusive_private_output_same_input_and_symlink_parent_rejected",
+          "test_conservation_detects_double_counted_closed_escrow_and_bad_issuance",
+          "test_vesting_preserved_as_exact_units_without_double_counting_supply",
+          "test_cli_compiles_and_verifies_but_never_overwrites_or_accepts_stale_pin",
+          "test_actual_preserved_mainnet_backup_replays_under_separate_known_pins"
+        ]
+      },
+      "test_mldsa_interop": {
+        "MLDSAInteropTests": [
+          "test_python_transfer_verifies_in_node_and_rejects_changed_body_or_context",
+          "test_node_transfer_verifies_in_python_and_rejects_changed_body_or_context",
+          "test_python_rotation_proofs_verify_in_node_with_separate_contexts",
+          "test_node_rotation_proofs_verify_in_python_and_reject_context_swap"
+        ]
+      }
+    }
+  },
+  "candidate_observations": {
+    "native_space": {
+      "unpatched_pinned_verifier_used": true,
+      "production_security_verified": false,
+      "fixture": "tests/fixtures/space-proof-bound.json",
+      "k": 18,
+      "fixture_sha256": "aaf2175dbfcdbadd051a1e714fa1457baa1c3c1f0c3aa3744d8843b5890119e9",
+      "checks": [
+        "Owner/chain/nonce/k-bound registration, signed beacon and checkpoint",
+        "Actual proof quality and exact signed export/replay",
+        "Changed plot, challenge, k, proof and domain rejection",
+        "Invalid proof at capacity cannot invalidate retained accepted history"
+      ],
+      "limitation": "Small disposable plot vector, deleted after extraction; no proof of present retention or production time/space security."
+    },
+    "synthetic_graph": {
+      "proof_verifier_mocked": true,
+      "proof_of_space_verified": false,
+      "tests": 15,
+      "checks": [
+        "Bounded branch-order convergence and deterministic ties",
+        "Capacity failure withholds best instead of pruning accepted history",
+        "Caller-pinned genesis/configuration and externally retained canonical export digest"
+      ],
+      "limitation": "Fixed predictable trusted beacon and arbitrary laboratory score; no production randomness, difficulty, finality or economics."
+    },
+    "signature_interop": {
+      "tests": 4,
+      "native_python_and_node": true,
+      "standard_spki_serialization": true,
+      "transfer_and_dual_key_rotation_both_directions": true,
+      "changed_body_wrong_omitted_context_corrupted_signature_rejected": true,
+      "independent_cryptographic_implementations": false,
+      "native_browser_or_python_workers_qualified": false,
+      "limitation": "Separate APIs/OpenSSL versions, same OpenSSL implementation family; ephemeral keys only."
+    },
+    "accounts": {
+      "detached_bounded_authorization_snapshot": true,
+      "atomic_balance_nonce_key_and_event_commit": true,
+      "partial_or_altered_schema_refused_without_repair": true,
+      "limitation": "Offline devnet ledger only; no deployed legacy-wallet repair, ownership migration or funded-user recovery qualification."
+    }
+  },
+  "saved_ledger_preservation": {
+    "pins": {
+      "checkpoint": "565e049b7732894f86260bfaa65e19e33125658d9b5fa71ef2b189c096970928",
+      "coin_sha256": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+      "genesis": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+      "ledger_sha256": "ae4983bcaffa55881c7fd9c38383ac7293188c3003660ca11595391ad6071ea0",
+      "network": "mainnet"
+    },
+    "packet_sha256": "e3a590eaa0cbe223abf1140270a1c454dfdb4e450fb4437230d9a0233113c30e",
+    "candidate_rederived_equal": true,
+    "height": 4,
+    "accounting": {
+      "balance_units": 2101998000000,
+      "initial_allocation_units": 2100000000000,
+      "issued_units": 2101998000000,
+      "mined_units": 1998000000,
+      "open_escrow_units": 0,
+      "supply_conserved": true
+    },
+    "balances_count": 4,
+    "plots_count": 1,
+    "transactions_count": 4,
+    "non_genesis_checkpoints_count": 4,
+    "actual_saved_swaps_count": 0,
+    "test_ledgers_cover_open_claimed_refunded_swaps_forks_vesting_and_pending_transactions": true,
+    "current_live_state_verified": false,
+    "migration_imported": false,
+    "physical_plot_files_verified": false,
+    "private_signing_state_verified": false,
+    "limitation": "Only the separately anchored saved hosted-backup format. Raw history cannot establish private keys, unseen signatures, account backups or a safe legacy-ownership claim."
+  },
+  "public_review_source": {
+    "repository": "jerryhellden932-cmd/aurion-miner",
+    "mapping": {
+      "scripts/check_migration.py": "research/upgrade-v3/scripts/check_migration.py",
+      "tests/fixtures/mldsa-interop.mjs": "research/upgrade-v3/tests/fixtures/mldsa-interop.mjs",
+      "tests/fixtures/space-proof-bound.json": "research/upgrade-v3/tests/fixtures/space-proof-bound.json",
+      "tests/fixtures/space-proof.json": "research/upgrade-v3/tests/fixtures/space-proof.json",
+      "tests/test_consensus_candidate.py": "research/upgrade-v3/tests/test_consensus_candidate.py",
+      "tests/test_mldsa_interop.py": "research/upgrade-v3/tests/test_mldsa_interop.py",
+      "tests/test_upgrade.py": "research/upgrade-v3/tests/test_upgrade.py",
+      "upgrade/consensus.py": "research/upgrade-v3/upgrade/consensus.py",
+      "upgrade/preservation.py": "research/upgrade-v3/upgrade/preservation.py",
+      "upgrade/protocol.py": "research/upgrade-v3/upgrade/protocol.py",
+      "upgrade/requirements-linux-py312.txt": "research/upgrade-v3/upgrade/requirements-linux-py312.txt",
+      "upgrade/requirements.txt": "research/upgrade-v3/upgrade/requirements.txt",
+      "upgrade/storage.py": "research/upgrade-v3/upgrade/storage.py",
+      "docs/OFFLINE_UPGRADE_REVIEW.md": "research/upgrade-v3/README.md"
+    },
+    "source_sha256": {
+      "scripts/check_migration.py": "8df50a3cc53945855a149b0549249b97b14321fdad48ef4a8e8bb0bb264ed5b3",
+      "tests/fixtures/mldsa-interop.mjs": "e1d311f413d1aab5d61a9216c46cc440dcfddb99593ec677178d3ba54fdb7131",
+      "tests/fixtures/space-proof-bound.json": "aaf2175dbfcdbadd051a1e714fa1457baa1c3c1f0c3aa3744d8843b5890119e9",
+      "tests/fixtures/space-proof.json": "cc4effda9a52413e2ab06a77eda0dbde9092001a963bda3691b5ad6c0bfa3963",
+      "tests/test_consensus_candidate.py": "dee3a97d37f6920af97a9c5f4a9ed7122febe5ac078c17291dad5ed7d4612c2f",
+      "tests/test_mldsa_interop.py": "58edde07c89943e14656a648e889fd3662aedfb87812a77c15d79cc5b33597b0",
+      "tests/test_upgrade.py": "3e2e357484d21813cb2d5276978f66961fa9fe8f6926e0dc66bdb4b74027676c",
+      "upgrade/consensus.py": "dcf8f957be3ea408a2d9ba8c24151aabb85baf8e7a0758973e40769e9d49d607",
+      "upgrade/preservation.py": "b352a4acaecac4cb310969bba86b75d6b1f5f958a1f8b87d37cbc8b63f47eb77",
+      "upgrade/protocol.py": "5285331ef447d4998b3bf40d241bf7770dbf2d304cfbc51f3d97b1dbc9f2987c",
+      "upgrade/requirements-linux-py312.txt": "fa2034b61a573a50bb0aa38d17fca5e234cc13da8747f75180825dd604d841bb",
+      "upgrade/requirements.txt": "045ce7e68dfb991183c703733701ef76f75e970aaafe3fbf3d08409303fe998a",
+      "upgrade/storage.py": "7a46038d9e49fe25a8b500d5754c1a9534cbd280ea838e77940d1f1785846840",
+      "docs/OFFLINE_UPGRADE_REVIEW.md": "53c2992fdcdc0febf63a2cf9aebb49f5d457ee9b4c2cc15fa5d1a4d172834dee"
+    },
+    "scope": "Isolated modules, three candidate suites and public proof/signature fixtures. Full hosted tests and retained operator backup excluded."
+  },
+  "remaining_blockers": [
+    "Reviewed production storage-consensus specification, randomness/time and difficulty/finality/economic rules",
+    "Reviewed legacy-ownership claims, dispute/recovery rules and history-preserving coordinated activation",
+    "Supported network/seed/browser runtimes, durable state and sustained hostile-network qualification",
+    "Authenticated competent independent cryptography/consensus review and independently operated persistent nodes"
+  ],
+  "current_v1_verification": {
+    "schema_version": 1,
+    "kind": "current-v1-real-funds-verification",
+    "evaluated_at_utc": "2026-10-10T10:05:16Z",
+    "network": "aurion-mainnet",
+    "genesis": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+    "readiness": "blocked",
+    "real_funds_ready": false,
+    "security_certification": false,
+    "activation_authorized": false,
+    "live_state_verified": false,
+    "external_evidence_authenticated": false,
+    "new_paid_services_requested": false,
+    "gates": [
+      {
+        "id": "storage_consensus",
+        "status": "blocked",
+        "reason": "Active v1 accepts publicly recomputed proofs and producer-influenced challenges; a reviewed replacement and migration are missing."
+      },
+      {
+        "id": "standard_signatures",
+        "status": "blocked",
+        "reason": "Active v1 uses custom WOTS/Merkle. Isolated ML-DSA/chiapos candidates are not integrated, reviewed or activated."
+      },
+      {
+        "id": "signing_state_rotation",
+        "status": "blocked",
+        "reason": "Profile/path guards and retained envelopes cannot secure independent copies, complete storage rollback, reused or exhausted legacy keys."
+      },
+      {
+        "id": "independent_audits",
+        "status": "blocked",
+        "reason": "Authenticated, competent independent consensus/cryptography reports and verified remediation for this exact release have not been supplied."
+      },
+      {
+        "id": "adversarial_testing",
+        "status": "blocked",
+        "reason": "Local regressions do not establish sustained hostile-network, partition, resource-exhaustion or production recovery qualification."
+      },
+      {
+        "id": "independent_node_network",
+        "status": "blocked",
+        "reason": "Corroborated independent administration, persistent chain observations and outage/recovery exercises have not been supplied."
+      }
+    ],
+    "local_tests": {
+      "javascript": {
+        "files": {
+          "tests/accounts.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 9,
+              "pass": 9,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/accounts.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/bitcoin-billing.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 13,
+              "pass": 13,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/bitcoin-billing.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/browser-privacy.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 40,
+              "pass": 40,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/browser-privacy.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/cloud-http.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": null,
+            "case_counts_available": false,
+            "runner": "reviewed_assertion_only_script",
+            "basis": "Observed process completion; this script does not emit individual TAP case counts.",
+            "command": [
+              "node",
+              "/workspace/Aurion-funds/tests/cloud-http.test.mjs"
+            ],
+            "diagnostic_tail": "Cloud HTTP checks passed: worker bearer identity, pinned heartbeat contract, owner authorization, readiness gates and rejection of forged entitlement.\n"
+          },
+          "tests/cloud-mining.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 27,
+              "pass": 27,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/cloud-mining.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/deployment-safety.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 14,
+              "pass": 14,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/deployment-safety.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/eth-settlement.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 6,
+              "pass": 6,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/eth-settlement.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/ethereum-billing.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 15,
+              "pass": 15,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/ethereum-billing.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/external-wallets.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 15,
+              "pass": 15,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/external-wallets.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/founder-access.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 11,
+              "pass": 11,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/founder-access.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/market-http.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": null,
+            "case_counts_available": false,
+            "runner": "reviewed_assertion_only_script",
+            "basis": "Observed process completion; this script does not emit individual TAP case counts.",
+            "command": [
+              "node",
+              "/workspace/Aurion-funds/tests/market-http.test.mjs"
+            ],
+            "diagnostic_tail": "Market HTTP checks passed: public reads, authenticated mutations, AUR funding checks, funded-offer fallback and no caller-supplied conversion status.\n"
+          },
+          "tests/market-settlement.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 27,
+              "pass": 27,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/market-settlement.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/market.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 16,
+              "pass": 16,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/market.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/public-release.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 3,
+              "pass": 3,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/public-release.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/recovery-backup.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 14,
+              "pass": 14,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/recovery-backup.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/settlement-verifier.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 10,
+              "pass": 10,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/settlement-verifier.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/site-privacy.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 3,
+              "pass": 3,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/site-privacy.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/social-preview.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 2,
+              "pass": 2,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/social-preview.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/swaps.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": null,
+            "case_counts_available": false,
+            "runner": "reviewed_assertion_only_script",
+            "basis": "Observed process completion; this script does not emit individual TAP case counts.",
+            "command": [
+              "node",
+              "/workspace/Aurion-funds/tests/swaps.test.mjs"
+            ],
+            "diagnostic_tail": "Swap API checks passed: exact lock fees, no-balance claims, index preservation, preimages, height boundaries and signed sender guards.\n"
+          },
+          "tests/transaction-outbox.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 16,
+              "pass": 16,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/transaction-outbox.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/transfers.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 10,
+              "pass": 10,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/transfers.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/wallet-store.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 17,
+              "pass": 17,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/wallet-store.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          },
+          "tests/wallet.test.mjs": {
+            "status": "passed",
+            "exit_code": 0,
+            "counts": {
+              "tests": 16,
+              "pass": 16,
+              "fail": 0,
+              "cancelled": 0,
+              "skipped": 0,
+              "todo": 0
+            },
+            "command": [
+              "node",
+              "--test-reporter=tap",
+              "/workspace/Aurion-funds/tests/wallet.test.mjs"
+            ],
+            "diagnostic_tail": ""
+          }
+        },
+        "all_files_passed_without_skips": true
+      },
+      "python": {
+        "status": "passed",
+        "exit_code": 0,
+        "counts": {
+          "tests": 229,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "issues": []
+        },
+        "command": [
+          "/tmp/aurion-upgrade-runtime-20261010/bin/python",
+          "-c",
+          "import json,sys,unittest\nroot=sys.argv[1]\nsys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+\"/tests\",pattern=\"test_*.py\")\nresult=unittest.TextTestRunner(verbosity=1).run(suite)\nprint(\"AURION_LOCAL_TEST_RESULT:\"+json.dumps({\"tests\":result.testsRun,\"failures\":len(result.failures),\"errors\":len(result.errors),\"skips\":len(result.skipped),\"expected_failures\":len(result.expectedFailures),\"unexpected_successes\":len(result.unexpectedSuccesses),\"issues\":[{\"test\":test.id(),\"reason\":reason[-2000:]} for test,reason in result.failures+result.errors+result.skipped+result.expectedFailures]}))\nsys.exit(0 if result.wasSuccessful() else 1)\n",
+          "/workspace/Aurion-funds"
+        ],
+        "diagnostic_tail": ""
+      },
+      "scope": "Fresh local Node and Python suites, including failures and skips; not native browser, Workers deployment, Windows, independent audit or hostile public network qualification."
+    },
+    "limitations": [
+      "This current-v1 checker has no certification or activation success mode.",
+      "Source pins identify the known experimental protocol, not an externally approved secure candidate.",
+      "No funded wallet, production database, live endpoint or deployed code is accessed.",
+      "Names, signatures, artifact hashes and status booleans alone cannot prove reviewer competence, independence or operational claims."
+    ],
+    "source": {
+      "public_inputs_sha256": "d0224c4c20c9f102b702301237a4ec8603ffbb373e29e781bd4406a17adb01b0",
+      "files": {
+        "coin/aurion.py": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+        "coin/cloud_miner.py": "63592340cc6ff105a96909d840d69c50da6674506318f68b3992a9672a8f16bd",
+        "coin/ethereum_swap.py": "0f54e7f5ae5fdd6ce5a813fc66a3f502a4b07248cd1a6cfcac58fdeb6b847ec8",
+        "coin/exchange_api.py": "3c750bb500d9b10f707ff4e1de38c1ad12d7e6e07a9e89cc90bda53a6da28bb6",
+        "coin/exchange_client.py": "f023974beca228470919c986baf9fa978eb992eb2471d3e907d91482b23b8b03",
+        "coin/launcher.py": "35ed1a8969bc298c0ffa2c84758a2697c079c0d94204fbe3083c79def914b90d",
+        "coin/market_client.py": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128",
+        "docs/AUDIT_SCOPE.md": "97b872b37cba53842422d68780c1eaaa487f72f7ce50d4f356de6564dfd0da4c",
+        "docs/NODE_OPERATIONS.md": "2d8ed190fc04f53d8e9e97352998708b52b2ab6ed12c69924ce0f489363e5d0d",
+        "docs/PROTOCOL_UPGRADE.md": "2e4aee07ef73c45224696117ab195f668ce28517062686c119512cf780c2a6ec",
+        "docs/REAL_FUNDS_VERIFICATION.md": "41f7f96ec85a28bec1b61f107d03665736e0b0d0bb87b25d2bb9dc0dbfb04322",
+        "docs/SECURITY.md": "d4025e84e3f1d44f15f5c9ff35371f31853bd98a8fbe573f0ca630cf99a46ecd",
+        "docs/UPDATE_AND_RECOVERY.md": "00e9e8fa5bd5ef9fb618d5f390eae79978df517baa288034d6e13d8031800ee9",
+        "docs/genesis-config.json": "75a3350d10e3c72ca0467736ba089b0b09feddca414093ed6faffbcfb2e1217e",
+        "docs/genesis.json": "908b5fa44d7b29fefef3ffcce4d930b912e8b20e71d33b0e2f5a197661bac5b3",
+        "package.json": "fa73440176e39a6f4c9430d15aedd01fea89bdf8ccca9bec34e240398cb39256",
+        "scripts/build.mjs": "4aec9c3afb7f0510edb6679da5aaf80a65170d8e2ec8c7eea4435df82fcfb559",
+        "scripts/build_seed.py": "0c67c202573abc2b79fa3837388ba3b5d50a35b1371953ae22af31dc2d5c7f47",
+        "scripts/check_migration.py": "8df50a3cc53945855a149b0549249b97b14321fdad48ef4a8e8bb0bb264ed5b3",
+        "scripts/check_readiness.py": "8c1bf6ccd5ec48454f512812d77c7506eeb3c9546000825bd3b06114b0205bd0",
+        "scripts/deploy.mjs": "8e01b896cb44731ec3954b46772d2ed8259a38ae9f00857ed0fdc5656238d4fa",
+        "scripts/network_health.py": "56292b5d8b45b91e4ebee327748f5a77e08f7bd65a6099c3aa8571ff8ea0c769",
+        "scripts/node_backup.py": "9334c87756047a999648ffdf548aa8a04b486cf4e1a29936a8f621cce6f87244",
+        "scripts/package_downloads.py": "c2badbb5606d1db92906e41aa8ff45830f1b4af35abc9d8547859f94b52f1128",
+        "scripts/prepare_deployment.py": "10fbb5dd6381f85bde1eeaaed2ba003d2207e309919b0801a324c0c61da66a6f",
+        "scripts/prepare_public_release.py": "45a4340bcdb4f5761cdad24a90df02d2143124b783c5c3636ef9603bbcf186a4",
+        "scripts/preview.mjs": "07b014c713d796ae9390099b0a46802a4c47637e70d8ed478117c90ffa03f317",
+        "scripts/probe_legacy_consensus.py": "d6de0cabcf17095a2e144a4b0dc47b84d5b23e53d0d8cba240abcfd702415fec",
+        "scripts/update_guard.py": "c9567ed2111a56a5b1e85b86d09a8960777bda3c2dce5f14d1114882844494eb",
+        "seed/core.py": "b6ad74e574311839d2dd1a62f3a2d52e805639639688f5c155948065c599d411",
+        "seed/entry.py": "504962e2d9515b845a5e83927c3cfc813b683434e4a7fc1c60ce43985a163864",
+        "server/accounts.js": "4eac8292cf5ed4780b9adcf17399d6542f732653962bc2095cae13c7df5050c7",
+        "server/auth-crypto.js": "e3a3842ebb0fa1ce4dcbd3a79bc8bf5dd2f1adc17150fe06ce310224c56bb079",
+        "server/bitcoin-billing.js": "712f11946ace677e66d3235be237231471f5938442a4438d6ad2660d5727a4af",
+        "server/cloud-http.js": "6ffcd8fa5036e230239b729d4368acb2596ddb8b0b29c6c0ffe4d1a6aa7ffbf4",
+        "server/cloud-mining.js": "0696738d83ef1f087bfa3e5574aa638264ecee146820de12ad055d7976aca7cf",
+        "server/eth-artifact.js": "31c021f2cb1179b2247e8a2bc4d35c459477e81fcad529d5663a35afc3ddf70e",
+        "server/ethereum-billing.js": "dd12a53a71e3bb26d42ed28a5f22a4fecb6dcaa149ec43121d3a3ffb71f1bdf1",
+        "server/founder-access.js": "e30fbd43eae6da42a30f54ebfdd20a3eabdc12a215f8a52ca2a68bf20d75d146",
+        "server/http.js": "6dc1d16034928e0de70f56297a508e2baeb0257f019de73137db8cf422a58d30",
+        "server/market-http.js": "5e8e6be454a24f41a3583ee10ce58410173bb0d6c36a0ea53e579e9b7bdb776e",
+        "server/market.js": "b826b760d2de82b793d8d892d808d40b1a38e2280187f1ca1eea700ef7ce3b3a",
+        "server/page-metadata.js": "42f276766be0a78cf3b7e527081fd8714343c5a6918e25e02c404834361719a6",
+        "server/page-render.js": "72c0722386fe29b8d701e4ca7f522cdfe17d5c31eee1a00cda38e131c11cfc23",
+        "server/public-release.js": "9a0b18346246854519f1ef4412083f69c2bc175956f4a671af93616fe1e57dce",
+        "server/settlement-verifier.js": "71fc09b5b80563c2c1d76173530afc4e06f2d1b4bf877bdfd489742b56fcd489",
+        "server/sha3.js": "eb18190e0bf0c815ed0520ad461f3bba287e51f4cf1f782229a2575111c2ab3b",
+        "server/site-http.js": "32f105418b15c017fa712f8d987fd7eb948299003746b52a03e6fb15b17778a0",
+        "server/swap-http.js": "a6da3d799ec8e4d86221df331da4b419a070c5fa86571281bc58885a388fa82b",
+        "site/.well-known/aurion.json": "dcf7d1cdbdf2edeb84e8ff8d88cbabc4fbddefe9112eab4fb32696dedc78af17",
+        "site/app.js": "ead54b16e2315d7d703846d0a80edd7f2174c89a45282f46de474fc4854f98f8",
+        "site/cloud-mining.js": "202fdf6e7702e55f113c27115ea397bf088e655717c306322b0c69237730ded3",
+        "site/downloads/AUDIT_SCOPE.md": "97b872b37cba53842422d68780c1eaaa487f72f7ce50d4f356de6564dfd0da4c",
+        "site/downloads/AurionHTLC.abi.json": "3a176da31a7ccb22cc51b2a375affe1e5f002a2440e4d1f0f701d701e2879402",
+        "site/downloads/AurionHTLC.artifact.json": "25041ce57b4f6b7e24383cbad08471e72f9c2acb50aa5f46e8b99a9851470527",
+        "site/downloads/AurionHTLC.sol": "5301244714f49bab7e5860a5b68c191d57d0bce295ee4f2f7b4a2e372a3f2f22",
+        "site/downloads/BITCOIN_BILLING.md": "033e80275a5f5ddcd5e48a3374ef1adab44d64cdad46a456c3de758e783c850d",
+        "site/downloads/CLOUD_HOSTING.md": "4b1b1a4496abc53e53a30a18d6a17653def7b525f8d45f86c842449a9a0d5643",
+        "site/downloads/CLOUD_MINING.md": "341158e80c8f866a0bbf23678260b99a634b3f0b0714f73318ae9dfd4646ff1e",
+        "site/downloads/CLOUD_MINING_DESIGN.md": "7a367f57d78af34f30bd0ba5f4a837bceb45f45243d6e4edf44b753a58b663f1",
+        "site/downloads/CLOUD_WORKER.md": "79dab4e5e833f59e2b6a1dba02f6192aaeeffaa178df61fb1ed3fc1831b526c0",
+        "site/downloads/ETHEREUM.md": "2a5b5b56a98b14214baf64d59f1eebc207f8a43151505edda0f29cbc56395594",
+        "site/downloads/ETHEREUM_BILLING.md": "0ce059bcc65054f05031ad1aaf80a6ccbd02af86386a9e68332c618dd6771841",
+        "site/downloads/EXCHANGE.md": "484c58d78ef4f968927cda32f7269376921858e80b249b6c9aa7c220f5bf3e8c",
+        "site/downloads/MARKET.md": "f5cf9f2784e2b12d2e9d198ce89fa77141e460874bf63de58ce71b0eb7d06806",
+        "site/downloads/NODE_OPERATIONS.md": "2d8ed190fc04f53d8e9e97352998708b52b2ab6ed12c69924ce0f489363e5d0d",
+        "site/downloads/PROTOCOL_UPGRADE.md": "2e4aee07ef73c45224696117ab195f668ce28517062686c119512cf780c2a6ec",
+        "site/downloads/REAL_FUNDS_VERIFICATION.md": "41f7f96ec85a28bec1b61f107d03665736e0b0d0bb87b25d2bb9dc0dbfb04322",
+        "site/downloads/SECURITY.md": "d4025e84e3f1d44f15f5c9ff35371f31853bd98a8fbe573f0ca630cf99a46ecd",
+        "site/downloads/TRADE.md": "ded89e767ad65b9d5be4679a6b71a56c6015ef3180c578133f9ed578358c9a84",
+        "site/downloads/UPDATE_AND_RECOVERY.md": "00e9e8fa5bd5ef9fb618d5f390eae79978df517baa288034d6e13d8031800ee9",
+        "site/downloads/aurion.py": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+        "site/downloads/cloud_miner.py": "63592340cc6ff105a96909d840d69c50da6674506318f68b3992a9672a8f16bd",
+        "site/downloads/ethereum_swap.py": "0f54e7f5ae5fdd6ce5a813fc66a3f502a4b07248cd1a6cfcac58fdeb6b847ec8",
+        "site/downloads/exchange_api.py": "3c750bb500d9b10f707ff4e1de38c1ad12d7e6e07a9e89cc90bda53a6da28bb6",
+        "site/downloads/exchange_client.py": "f023974beca228470919c986baf9fa978eb992eb2471d3e907d91482b23b8b03",
+        "site/downloads/genesis-config.json": "75a3350d10e3c72ca0467736ba089b0b09feddca414093ed6faffbcfb2e1217e",
+        "site/downloads/genesis.json": "908b5fa44d7b29fefef3ffcce4d930b912e8b20e71d33b0e2f5a197661bac5b3",
+        "site/downloads/market_client.py": "9305a616352dcec4bb03778157a029dad6de587bd04e39cdb2979a9f1dc86128",
+        "site/downloads/openapi.json": "cc7a08ead9eb8b9befd4046f5ba66b76c050c240dd8b43334663598fdadd897a",
+        "site/eth-settlement.js": "417c002ea3ae001b44f1e29c457fddf57a2ff0db5ee68220dbd206d2e55f85d3",
+        "site/external-wallets.js": "46348c6bc63ff6b1d55c7e9ec69f913715287a45cafae37edfb622d3553ba513",
+        "site/favicon.svg": "9346f082e0ccda2e733cd3eb88b84dcae0fe978bcfba897560d905a8217a04d8",
+        "site/index.html": "be53a16903703a45cd0075effff188256edbb4e1da4ed7e8374d2951b80199df",
+        "site/market-settlement.js": "3aa0954fa315636bf0aa41fa4f4be081ac44420875b00142e51327fbeb37084c",
+        "site/readiness.json": "3adf389d148c9acdf7af2601ce14b0429540cdb3b356ae4fedbda19fea59cec8",
+        "site/recovery-backup.js": "35a07ea0d22886d38449fa99031e341b2c2d143b1bc136ae04b031e0a68e11d7",
+        "site/robots.txt": "0988de5fc18b4f2d9fb7e4d9b701d1ed337c08e635bb09d2ad79d20ab832381c",
+        "site/sitemap.xml": "3721006cedf52fbd8f31f43512193f00795a5015c07a908633ed575010262da9",
+        "site/social-preview-20261009.jpg": "da9bb4928ffa4db9f84d4667b579a73db421acce973ff200785bdc470567fcf7",
+        "site/social-preview.png": "ae5e0c1ce101910a60856348061aecb4057b4014d54eee60c350f6c80896627a",
+        "site/style.css": "0f2e26d4293e385b5cdeb9d7fb1dbf11478bff224c05daf558ea39ace8fc4d98",
+        "site/transaction-outbox.js": "1657524412f61a397c2febb44368a077cc0a9b41cfcb53fe0b8f77c5c31f50e7",
+        "site/vendor/scrypt-LICENSE.txt": "e182fbf51b160132f831a9188eaf52602b9646718820084672a591ef39a48372",
+        "site/vendor/scrypt.cjs": "6af879d5b48afd7a75c0427bbfd8562742f513ad9aab998341f5529c217ebc2b",
+        "site/vendor/sha3-LICENSE.txt": "8347d2452b503975f5a902eeea52cddb0d1b7d4e764fb42c5c97d68fcacae964",
+        "site/vendor/sha3.cjs": "eb18190e0bf0c815ed0520ad461f3bba287e51f4cf1f782229a2575111c2ab3b",
+        "site/wallet-crypto.js": "45478c17efc57c017500c7108353aba6867b7578ff0fbb9796f8cde287bf533e",
+        "site/wallet-store.js": "c4e30f051859a775e028881fe721c21ba5930b4a6df1ed67b5b1034c3865a4f0",
+        "site/wallet-worker.js": "a5d5b0a06adffb313a0cc1be788f2590f31241cdc48d1d140d50c1cfa7dbdc62",
+        "tests/accounts.test.mjs": "75da6262aba8e09719ab2e490a67e1dc5f3d324d0bb876e92dc9b5c761b42bc8",
+        "tests/bitcoin-billing.test.mjs": "93e78a5d1951f7558e6bbbb1813e2b68b4e5a810383cfcb15b5ff36296bfec38",
+        "tests/browser-privacy.test.mjs": "feb0d2bf9a3ff5c66e951b33270694699d9a0991a1cc723b89612521e07ddad8",
+        "tests/cloud-http.test.mjs": "67b345ecc20e4f4f72e58a9e6f6ab54f40658bc8a8ec1b37cab858a593d6c2f0",
+        "tests/cloud-mining.test.mjs": "e7fc2ca4605d35b4e8e3b4973a3f4bc4a6dd593b105e2b17d2587af3a894f1ec",
+        "tests/deployment-safety.test.mjs": "c64cecf83f11d7d0a08ed59df929bad2e0eabc5ac03d05355d6222013477a582",
+        "tests/eth-settlement.test.mjs": "8caa52d6e016c47ac4939a7ebb40133e4f2e39e9feb972377726e80ab49e4002",
+        "tests/ethereum-billing.test.mjs": "dad768d7e691f1da2e74f62510af7864ee61cbbd7f1111bf3c074bc14577f6ab",
+        "tests/external-wallets.test.mjs": "de5a73d15b9855419130922ddb4792e97365519836bf56de02efb7823c18965e",
+        "tests/fixtures/mldsa-interop.mjs": "e1d311f413d1aab5d61a9216c46cc440dcfddb99593ec677178d3ba54fdb7131",
+        "tests/fixtures/space-proof-bound.json": "aaf2175dbfcdbadd051a1e714fa1457baa1c3c1f0c3aa3744d8843b5890119e9",
+        "tests/fixtures/space-proof.json": "cc4effda9a52413e2ab06a77eda0dbde9092001a963bda3691b5ad6c0bfa3963",
+        "tests/founder-access.test.mjs": "8ed2f9f547cdc21f949ef5cfb7b0d53ec899e7ecb03c694dff93b91b0970e4a5",
+        "tests/market-http.test.mjs": "8bd838ffc6e99df1d0149abf1e73d7d01530c9b5cbe277a1e0dacb7246e05dc7",
+        "tests/market-settlement.test.mjs": "3b245654dd2371697ba6a015048f2194ad4b378ea0497d34b924f3b48c8e740c",
+        "tests/market.test.mjs": "0cc17568eaa6e516e8aa0f7a6e231287aba680a59760f69a458f036f427ab07d",
+        "tests/public-release.test.mjs": "8008fb91155ac598d4df7de405bbae544d5d59f25ca34cc0d857a86f5cd04e79",
+        "tests/recovery-backup.test.mjs": "ef0b987628074dc135caecdc10a13f572975e52358a9a72821edd7aaef44f70f",
+        "tests/settlement-verifier.test.mjs": "baa2e41084189d118f69df8482a16110e3b23d7d9b4407c8122aaf28dea85cab",
+        "tests/site-privacy.test.mjs": "b51f8236a86e6b5ba17d383730872f90e7e097293577d2d65fdd3a012d8805c2",
+        "tests/social-preview.test.mjs": "8748154e3002c75ae1e81fb7d3f23ca001c955caea9df9da30e9842511a2b959",
+        "tests/swaps.test.mjs": "4ae61edd3a56c14b80488699eff3247cad3c1c3e826135078f83dadf591e5f05",
+        "tests/test_adversarial.py": "ef2e0f50f38952c32f7177ad98e614c2993c485f74c6a59a8d565264385915e8",
+        "tests/test_cherry_capacity.py": "76b0ada324fd5b99765776e1e6b057d4444a66be892b8f0db078977f5beb6b16",
+        "tests/test_cloud_miner.py": "03ce9e655f2d6923950427650a7189140e1d1915f2a20daec36a57646d8055a4",
+        "tests/test_coin_hardening.py": "d326eea27104ba7780b8a26138254519cbf451f3c87212ca83cc9fd72271fd33",
+        "tests/test_consensus_candidate.py": "dee3a97d37f6920af97a9c5f4a9ed7122febe5ac078c17291dad5ed7d4612c2f",
+        "tests/test_ethereum_settlement.py": "860db4e0b46b2f64f7eb0ac3df844eaa6a54100c0143419cd84922524666c3a9",
+        "tests/test_exchange.py": "a1f9db977f95cc6525a1065605d5bf087e7077fbb05781c545275b1a5a7e7770",
+        "tests/test_htlc_receipts.py": "ee56c16513daf7725eaab3aa262cb2d4393d3d7738a817484b2c211fc8cb93a4",
+        "tests/test_market_client.py": "b9e115f813fde8680dd8c56953de45bd15780697fbf1c9d8580233ec2d634ac9",
+        "tests/test_migration.py": "10fb38652a0409e83532cc02b26d4edfac7c99cc670c0bfad037648d6142895e",
+        "tests/test_mldsa_interop.py": "58edde07c89943e14656a648e889fd3662aedfb87812a77c15d79cc5b33597b0",
+        "tests/test_operations.py": "67765c5970605ded929d24080619ca73c2d8733d80a4398f5cfcbb08fc6613e2",
+        "tests/test_prepare_deployment.py": "a983cce826ed4bc5060dbcccf03500923a3158b177e58a9992e8368c07d5adc9",
+        "tests/test_readiness.py": "2e91cf9867b42fcee3731e2d4146a23904ccfea61cce59f24e4f9874a4090257",
+        "tests/test_seed.py": "d05248bb8c93b287a910d0f43a2fdad6198ef31849b3882294876499c4e22adb",
+        "tests/test_update_guard.py": "aafaee42c5fc2ead238e58a5e4abfaf0119e1a806612a3eecf25c3734a2cead7",
+        "tests/test_upgrade.py": "3e2e357484d21813cb2d5276978f66961fa9fe8f6926e0dc66bdb4b74027676c",
+        "tests/transaction-outbox.test.mjs": "d0ad0f98325cc7f7e37d8907eebdb8c710d09321ab355e582c77d5e47e6c0098",
+        "tests/transfers.test.mjs": "30e2e5987ad8397abdd5eb0d214b44442feecb12a1d995fcaf0a1b0ff15f94b1",
+        "tests/wallet-store.test.mjs": "f9c6311876ffd08163b71f5f8ee57971aead6a3f45cb6a955a49b54eae1b203f",
+        "tests/wallet.test.mjs": "bc3bc37a5f611ff250f78e9821cbfe28a19f1ace7e7edb470b1889c5dd0347b5",
+        "upgrade/consensus.py": "dcf8f957be3ea408a2d9ba8c24151aabb85baf8e7a0758973e40769e9d49d607",
+        "upgrade/preservation.py": "b352a4acaecac4cb310969bba86b75d6b1f5f958a1f8b87d37cbc8b63f47eb77",
+        "upgrade/protocol.py": "5285331ef447d4998b3bf40d241bf7770dbf2d304cfbc51f3d97b1dbc9f2987c",
+        "upgrade/requirements-linux-py312.txt": "fa2034b61a573a50bb0aa38d17fca5e234cc13da8747f75180825dd604d841bb",
+        "upgrade/requirements.txt": "045ce7e68dfb991183c703733701ef76f75e970aaafe3fbf3d08409303fe998a",
+        "upgrade/storage.py": "7a46038d9e49fe25a8b500d5754c1a9534cbd280ea838e77940d1f1785846840"
+      },
+      "scope": "Listed public source/tests/docs; excludes .private, live databases, generated dist, dependency environments, five rebuildable ZIP/checksum downloads and the generated site/verification.json report."
+    },
+    "protocol": {
+      "actual_mainnet_genesis": "4f3347fd386cf267163dc329bd9781ef61b2915927507646d31c2584b977000d",
+      "validators": [
+        {
+          "validator": "coin/aurion.py",
+          "source_sha256": "123969e7ba271478d20b22205372a0651a4595cb4d4b989a5d3056954217361a",
+          "reproduced_failures": {
+            "public_plot_recomputation": true,
+            "producer_leaf_changes_next_challenge": true
+          },
+          "accepted_checkpoints": [
+            {
+              "checkpoint_hash": "3ae5ff78252a7fe3d4320463b4b67b9b80c5eb1b7eecd72a1b9a8f116b9f1ae8",
+              "declared_plot_entries": 4294967295,
+              "producer_balance_base_units": 10489500000000,
+              "next_challenge": "97ebe0133855a4069c0863a84605c445b3bbec7f8695829b66aed018af78fabb"
+            },
+            {
+              "checkpoint_hash": "a93f8a181e2e78304f020f13ed297778976400d6d7e870815011fca6f1e5b588",
+              "declared_plot_entries": 4294967295,
+              "producer_balance_base_units": 10489500000000,
+              "next_challenge": "0540a530bbe87949102971f2703eaf3d1a0abd107a5d8fc667b01860fa86e7c7"
+            }
+          ]
+        },
+        {
+          "validator": "seed/core.py",
+          "source_sha256": "b6ad74e574311839d2dd1a62f3a2d52e805639639688f5c155948065c599d411",
+          "reproduced_failures": {
+            "public_plot_recomputation": true,
+            "producer_leaf_changes_next_challenge": true
+          },
+          "accepted_checkpoints": [
+            {
+              "checkpoint_hash": "3ae5ff78252a7fe3d4320463b4b67b9b80c5eb1b7eecd72a1b9a8f116b9f1ae8",
+              "declared_plot_entries": 4294967295,
+              "producer_balance_base_units": 10489500000000,
+              "next_challenge": "97ebe0133855a4069c0863a84605c445b3bbec7f8695829b66aed018af78fabb"
+            },
+            {
+              "checkpoint_hash": "a93f8a181e2e78304f020f13ed297778976400d6d7e870815011fca6f1e5b588",
+              "declared_plot_entries": 4294967295,
+              "producer_balance_base_units": 10489500000000,
+              "next_challenge": "0540a530bbe87949102971f2703eaf3d1a0abd107a5d8fc667b01860fa86e7c7"
+            }
+          ]
+        }
+      ],
+      "environment": "Two in-memory regtest validators, disposable public fixture keys, no plot or ledger files; no mainnet or HTTP requests."
+    },
+    "public_status": {
+      "manifest_sha256": "3adf389d148c9acdf7af2601ce14b0429540cdb3b356ae4fedbda19fea59cec8",
+      "claimed_real_funds_ready": false,
+      "trusted_as_evidence": false,
+      "historical_validation_used_as_fresh_result": false
+    },
+    "generated_download_artifacts": {
+      "site/downloads/SHA256SUMS.txt": "bafb3ec894f3b6197e125c1b7885fd67ee52ea11c81996ec5933b2f38f29882e",
+      "site/downloads/aurion-exchange-kit.zip": "eed5775ed49c9451607b3d96435d5fec6971bb0423c708aba17cae9816daff68",
+      "site/downloads/aurion-linux.zip": "f4c5f439fd1266f8e2f09456474a85a98c92e19d25806cdc51b30daba30e57e7",
+      "site/downloads/aurion-macos.zip": "2e573b2abe1f91d363d6d6b50f919f370bf4d2e4e5499152eface0e4792f051d",
+      "site/downloads/aurion-windows.zip": "b1309edf35278d162521c9eab134ea135fc5b0b93f9ed3aa6bc64666e5433eb5"
+    },
+    "generated_download_artifacts_note": "Hashes at end of run only; rebuilding archives is not a source change or an independent provenance/security review.",
+    "source_unchanged_during_verification": true
+  }
+}

@@ -1,0 +1,2 @@
+cryptography==50.0.1
+chiapos==2.0.12
