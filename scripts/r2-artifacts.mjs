@@ -13,15 +13,28 @@ const PART_SIZE = 64 * 1024 * 1024;
 const MAX_JSON = 1024 * 1024;
 const MAX_FILE_SIZE = 32 * 1024 * 1024 * 1024;
 function error(message) { throw new Error(message); }
-function gatewayError(action, status, code) {
+function responseDiagnostics(response) {
+  const contentType = response?.headers.get('content-type') || '';
+  const mime = /^application\/json\b/i.test(contentType) ? 'json' : /^text\/html\b/i.test(contentType) ? 'html' : contentType ? 'other' : 'none';
+  const platform = response?.headers.get('cf-error-code');
+  const edge = response?.headers.get('cf-ray')?.match(/^[a-f0-9]{16}-([A-Z]{3})$/i)?.[1]?.toUpperCase();
+  return { mime, platform: /^[0-9]{3,5}$/.test(platform || '') ? platform : undefined,
+    edge, challenge: response?.headers.get('cf-mitigated') === 'challenge' };
+}
+function gatewayError(action, status, code, diagnostics = undefined) {
   const failure = new Error('Private R2 artifact gateway rejected the request.');
-  failure.artifactFailure = { action, status, code };
+  failure.artifactFailure = { action, status, code, ...diagnostics };
   throw failure;
 }
 export function formatFailure(failure) {
   const detail = failure?.artifactFailure;
   if (detail && /^[a-z-]{1,40}$/.test(detail.action) && Number.isInteger(detail.status) && detail.status >= 0 && detail.status <= 599 && /^[a-z_0-9]{1,100}$/.test(detail.code)) {
-    return `Private R2 artifact transfer failed: action=${detail.action} status=${detail.status} code=${detail.code}.`;
+    let suffix = '';
+    if (['json', 'html', 'other', 'none'].includes(detail.mime)) suffix += ` response=${detail.mime}`;
+    if (/^[0-9]{3,5}$/.test(detail.platform || '')) suffix += ` platform=${detail.platform}`;
+    if (/^[A-Z]{3}$/.test(detail.edge || '')) suffix += ` edge=${detail.edge}`;
+    if (detail.challenge === true) suffix += ' mitigation=challenge';
+    return `Private R2 artifact transfer failed: action=${detail.action} status=${detail.status} code=${detail.code}${suffix}.`;
   }
   return 'Private R2 artifact transfer failed. Check permissions, source run/attempt and file integrity; rerun the entire workflow if artifacts are missing.';
 }
@@ -139,25 +152,47 @@ export function createClient(env = process.env, fetcher = fetch, options = {}) {
     token = data.value; expiration = claims.exp * 1000; return token;
   }
   return {
-    async request(action, params = {}, { method = 'GET', body, headers = {}, stream = false, retries = 6 } = {}) {
+    async request(action, params = {}, { method = 'GET', body, bodyFactory, headers = {}, stream = false, retries = 6, transientRetries = 3 } = {}) {
       const url = new URL(gateway); url.searchParams.set('action', action);
       for (const [key, value] of Object.entries(params)) if (value !== undefined) url.searchParams.set(key, String(value));
       const started = Date.now();
+      let replayCount = 0;
+      const replayable = bodyFactory || body === undefined || typeof body === 'string' || ArrayBuffer.isView(body) || body instanceof ArrayBuffer;
+      async function replay() {
+        if (!replayable || replayCount >= transientRetries) return false;
+        replayCount++;
+        await new Promise(resolveWait => setTimeout(resolveWait, options.transientRetryDelay ?? Math.min(1500 * 2 ** (replayCount - 1), 6000)));
+        return true;
+      }
       for (let attempt = 0; ; attempt++) {
         const authorization = `Bearer ${await oidc()}`;
+        const attemptBody = bodyFactory ? bodyFactory() : body;
         let response;
         try {
-          response = await fetcher(url, { method, headers: { ...headers, authorization }, body,
-            duplex: body && typeof body !== 'string' ? 'half' : undefined, redirect: 'error', signal: AbortSignal.timeout(stream ? 300000 : 180000) });
-        } catch { gatewayError(action, 0, 'transport_failed'); }
+          response = await fetcher(url, { method, headers: { ...headers, authorization }, body: attemptBody,
+            duplex: attemptBody && typeof attemptBody !== 'string' ? 'half' : undefined, redirect: 'error', signal: AbortSignal.timeout(stream ? 300000 : 180000) });
+        } catch {
+          attemptBody?.destroy?.();
+          if (await replay()) continue;
+          gatewayError(action, 0, 'transport_failed');
+        }
         if (response.ok) return stream ? response : readJson(response);
+        attemptBody?.destroy?.();
+        const diagnostics = responseDiagnostics(response);
+        // Replay only a fixed request with fresh body bytes. Cloudflare/proxy errors
+        // arrive outside the gateway as non-JSON; signed gateway errors stay hard failures.
+        if ([429, 502, 503, 504].includes(response.status) && diagnostics.mime !== 'json') {
+          await response.body?.cancel();
+          if (await replay()) continue;
+          gatewayError(action, response.status, 'unrecognized_response', diagnostics);
+        }
         // Bootstrap retries only: authorization, integrity and conflict errors fail immediately.
         if ([404, 503].includes(response.status) && (method === 'GET' || (action === 'start' && typeof body === 'string')) && attempt < retries && Date.now() - started < (options.bootstrapTimeout ?? 150000)) {
           await response.body?.cancel(); await new Promise(resolveWait => setTimeout(resolveWait, options.retryDelay ?? Math.min(10000 * (attempt + 1), 40000))); continue;
         }
         let code = 'unrecognized_response';
         try { const data = await readJson(response, 65536); if (/^[a-z_]+$/.test(data.error || '')) code = data.error; } catch {}
-        gatewayError(action, response.status, code);
+        gatewayError(action, response.status, code, diagnostics);
       }
     },
   };
@@ -198,7 +233,7 @@ export async function uploadArtifact(args, env, client, log = console.log) {
         for (let number = 1; number <= Math.ceil(file.size / PART_SIZE); number++) {
           const offset = (number - 1) * PART_SIZE; const length = Math.min(PART_SIZE, file.size - offset);
           const actual = await shaFile(file.localPath, offset, offset + length - 1); if (actual.size !== length) error('Upload file changed.');
-          const response = await client.request('part', { ...common, file: index, part: number }, { method: 'PUT', body: createReadStream(file.localPath, { start: offset, end: offset + length - 1 }), headers: { 'content-length': String(length), 'content-type': 'application/octet-stream', 'x-artifact-sha256': actual.sha256 }, stream: true, retries: 0 });
+          const response = await client.request('part', { ...common, file: index, part: number }, { method: 'PUT', bodyFactory: () => createReadStream(file.localPath, { start: offset, end: offset + length - 1 }), headers: { 'content-length': String(length), 'content-type': 'application/octet-stream', 'x-artifact-sha256': actual.sha256 }, stream: true, retries: 0 });
           await response.body?.cancel();
         }
         await client.request('complete-file', { ...common, file: index }, { method: 'POST' });
